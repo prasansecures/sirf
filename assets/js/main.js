@@ -5,6 +5,25 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
+  /* ---------- Smooth scroll (Lenis, if it loaded) ---------- */
+  let lenis = null;
+  if (window.Lenis && !reduced) {
+    lenis = new Lenis({ lerp: 0.1 });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a || a.classList.contains('skip')) return;
+      const hash = a.getAttribute('href');
+      const target = hash === '#top' ? 0 : document.querySelector(hash);
+      if (target === null) return;
+      e.preventDefault();
+      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 0;
+      lenis.scrollTo(target, { offset: target === 0 ? 0 : -navH, duration: 1.4 });
+      history.pushState(null, '', hash);
+    });
+  }
+
   /* ---------- Scroll-linked work, batched into one rAF ---------- */
   const onScrollFns = [];
   let ticking = false;
@@ -31,6 +50,7 @@
     menuBtn.setAttribute('aria-expanded', open);
     menu.hidden = !open;
     document.documentElement.classList.toggle('menu-open', open);
+    if (lenis) open ? lenis.stop() : lenis.start();
   };
   menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
   $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));

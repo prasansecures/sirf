@@ -21,9 +21,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=League+Spartan:wght@300..900&display=swap">
+  <!-- Devanagari / Urdu fonts are subset to just the glyphs used in "What's in the name?" -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&text=%E0%A4%B8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%AB%E0%A4%BC&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@700&text=%D8%B5%D8%B1%D9%81&display=swap" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <script>document.documentElement.classList.add('js')</script>
+  <script>
+    (function (d) {
+      d.classList.add('js');
+      try { if (sessionStorage.getItem('sirf-intro')) d.classList.add('seen'); else sessionStorage.setItem('sirf-intro', '1'); }
+      catch (e) { d.classList.add('seen'); }
+    })(document.documentElement);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 
   <script type="application/ld+json">
@@ -40,6 +50,7 @@
   </script>
 </head>
 <body>
+  <div class="loader" aria-hidden="true"><span class="loader__mark">sirf<span class="dot"></span></span></div>
   <a class="skip" href="#main">Skip to content</a>
   <div class="cursor" aria-hidden="true"></div>
 
@@ -180,6 +191,20 @@
       </ol>
     </section>
 
+    <!-- ============ NAME ============ -->
+    <section class="name" id="name">
+      <div class="name__words" aria-hidden="true">
+        <span class="name__hi" lang="hi">सिर्फ़</span>
+        <span class="name__ur" lang="ur">صرف</span>
+      </div>
+      <div class="name__copy">
+        <p class="eyebrow">What's in the name?</p>
+        <h2 class="h2" data-reveal>Sirf means <em>only.</em></h2>
+        <p data-reveal>It's the word you reach for when you mean it. <em>Sirf tum. Sirf yeh. Sirf abhi.</em> Only you. Only this. Only now.</p>
+        <p data-reveal>That's the deal. When we're on your project, it isn't one of many. It's <b>sirf</b>&nbsp;yours.</p>
+      </div>
+    </section>
+
     <!-- ============ FIT CHECK (persona) ============ -->
     <section class="fit" id="fit" data-fit style="--count: 8">
       <div class="fit__sticky">
@@ -250,6 +275,7 @@
         </li>
       </ol>
 
+      <p class="pledges__title" data-reveal>Numbers we'll put in writing.</p>
       <dl class="pledges" data-reveal>
         <div><dt>1</dt><dd>project in focus per team</dd></div>
         <div><dt>1</dt><dd>point of contact, start to finish</dd></div>
@@ -264,6 +290,11 @@
         <p class="eyebrow eyebrow--light">Reel</p>
         <h2 class="h2" data-reveal>Less talk. <em>More frames.</em></h2>
       </header>
+
+      <p class="reel__note" aria-hidden="true">
+        <span>Showreel<br>2026</span>
+        <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c14-2 30 2 38 14 3 5 5 10 5 15"/><path d="M39 29l7 7 5-9"/></svg>
+      </p>
 
       <!-- Set data-src to a video file (e.g. assets/video/reel.mp4) or a YouTube/Vimeo embed URL -->
       <figure class="reel__frame" data-reel data-src="">
@@ -283,7 +314,7 @@
       <div class="contact__intro">
         <p class="eyebrow">Start a project</p>
         <h2 class="contact__title" data-reveal>Tell us the<br><em>one thing.</em></h2>
-        <p class="muted">We take on a limited number of projects so each one gets everything. Tell us what matters most and we'll reply personally.</p>
+        <p class="muted">We're selective. On purpose. We take on a limited number of projects so each one gets everything. If you think we'd work well together, tell us what matters most and a real human will reply.</p>
         <p class="contact__mail"><a href="mailto:hello@sirf.website">hello@sirf.website</a></p>
       </div>
 
@@ -319,6 +350,14 @@
       </form>
     </section>
   </main>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-label="Focus mode: on. Projects in focus right now: one. Half-done deliverables shipped: zero. Times we've said good enough: zero. Replies from actual humans: always.">
+    <div class="ticker__track" aria-hidden="true">
+      <span>Focus mode: on</span><span>Projects in focus right now: 1</span><span>Half-done deliverables shipped: 0</span><span>Times we've said “good enough”: 0</span><span>Replies from actual humans: always</span>
+      <span>Focus mode: on</span><span>Projects in focus right now: 1</span><span>Half-done deliverables shipped: 0</span><span>Times we've said “good enough”: 0</span><span>Replies from actual humans: always</span>
+    </div>
+  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">

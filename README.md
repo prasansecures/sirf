@@ -43,13 +43,16 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 
 ## Page structure
 
+0. **Intro:** the sirf. wordmark and red dot, shown once per browser session. It's skipped when the visitor has reduce-motion turned on.
 1. **Hero:** dictionary definition of *sirf* (Hindi/Urdu for "only"), with "One thing / *at a time*" and the red dot dropping in.
 2. **Marquee:** the disciplines.
 3. **Manifesto:** words light up as you scroll.
 4. **What we do:** six services. Only the one in the centre of the screen is in focus; the others blur.
-5. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs.
-6. **Method:** Listen, Commit, Craft, Deliver, plus four commitments.
-7. **Reel:** a showreel slot.
-8. **Contact:** "Tell us the one thing." brief form.
+5. **What's in the name?:** सिर्फ़ / صرف, "Sirf means *only*."
+6. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs.
+7. **Method:** Listen, Commit, Craft, Deliver, then "Numbers we'll put in writing."
+8. **Reel:** a showreel slot with a handwritten "Showreel 2026" note.
+9. **Contact:** "Tell us the one thing." brief form.
+10. **Ticker and footer:** a "Focus mode: on · Half-done deliverables shipped: 0…" ticker, then a giant wordmark with a red glow.
 
-Motion respects `prefers-reduced-motion`. Without JavaScript, every section falls back to static content.
+Smooth scrolling uses [Lenis](https://github.com/darkroomengineering/lenis) from jsDelivr; if it fails to load, the page falls back to native scrolling. The Devanagari and Urdu fonts load without blocking the page and are subset to just the glyphs used. Motion respects `prefers-reduced-motion`. Without JavaScript, every section falls back to static content.
