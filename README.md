@@ -19,7 +19,7 @@ npx serve .        # or: python3 -m http.server
 
 ## Deploy (Vercel)
 
-The site is plain static files, so Vercel serves it as-is: no build step, no framework. `vercel.json` adds clean URLs, security headers and caching for `assets/`.
+The site is plain static files, so Vercel serves it as-is: no build step, no framework. `vercel.json` adds clean URLs and security headers. Images are cached for 30 days; CSS and JS are revalidated on every visit, so each deploy shows up immediately.
 
 1. In Vercel: **Add New → Project → Import** the `prasansecures/sirf` GitHub repo.
 2. Framework preset: **Other**. Leave the build command and output directory empty. Deploy.
