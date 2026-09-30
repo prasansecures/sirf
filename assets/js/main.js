@@ -181,6 +181,121 @@
     form.addEventListener('input', e => e.target.closest('.field')?.classList.remove('is-invalid'));
   }
 
+  /* ---------- Booking pop-up: peeks open on hover, pins on click ---------- */
+  const cal = $('[data-cal]');
+  const calTrigger = $('[data-cal-trigger]');
+  if (cal && calTrigger) {
+    const root = document.documentElement;
+    const body = $('[data-cal-body]', cal);
+    const openLink = $('[data-cal-open]', calTrigger);
+    const backdrop = $('[data-cal-backdrop]');
+    let frame = false, isOpen = false, pinned = false, openT = 0, closeT = 0;
+
+    // Load the cal.com inline embed before anyone reaches for it, so the pop-up
+    // opens ready. This is cal.com's own embed snippet, run on demand.
+    const load = () => {
+      if (frame) return;
+      frame = true;
+      (function (C, A, L) { const p = (a, ar) => { a.q.push(ar); }; const d = C.document; C.Cal = C.Cal || function () { const cal = C.Cal; const ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
+      const Cal = window.Cal;
+      Cal('init', '30min', { origin: 'https://app.cal.com' });
+      Cal.config = Cal.config || {};
+      Cal.config.forwardQueryParams = true;
+      Cal.ns['30min']('inline', {
+        elementOrSelector: '#my-cal-inline-30min',
+        config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', theme: 'dark' },
+        calLink: 'prasan-singh/30min',
+      });
+      Cal.ns['30min']('ui', { theme: 'dark', cssVarsPerTheme: { light: { 'cal-brand': '#1c1c1c' }, dark: { 'cal-brand': '#f4f2ee' } }, hideEventTypeDetails: true, layout: 'month_view' });
+      const ready = () => body.classList.add('is-ready');
+      // If cal.com can't load (blocked network, strict host), offer a direct link
+      // instead of an endless spinner.
+      const fail = () => { if (!body.classList.contains('is-ready')) body.classList.add('is-fallback'); };
+      Cal.ns['30min']('on', { action: 'linkReady', callback: ready });
+      $('script[src="https://app.cal.com/embed/embed.js"]')?.addEventListener('error', fail);
+      setTimeout(() => ($('#my-cal-inline-30min iframe') ? ready() : fail()), 12000);
+    };
+    const nearIO = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { load(); nearIO.disconnect(); }
+    }, { rootMargin: '900px 0px' });
+    nearIO.observe(calTrigger);
+
+    const open = ({ pin = false, focus = false } = {}) => {
+      keep();
+      load();
+      pinned = pinned || pin;
+      root.classList.toggle('cal-pinned', pinned);
+      if (!isOpen) {
+        // Grow out of the "Let's talk" hue: set the transform origin to its centre.
+        const r = calTrigger.getBoundingClientRect();
+        const c = cal.getBoundingClientRect();
+        cal.style.setProperty('--ox', `${r.left + r.width / 2 - c.left}px`);
+        cal.style.setProperty('--oy', `${r.top + r.height / 2 - c.top}px`);
+        isOpen = true;
+        root.classList.add('cal-open');
+        cal.setAttribute('aria-hidden', 'false');
+        openLink.setAttribute('aria-expanded', 'true');
+        if (lenis) lenis.stop();
+      }
+      if (focus) setTimeout(() => $('[data-cal-close]', cal).focus({ preventScroll: true }), 50);
+    };
+    const close = ({ returnFocus = false } = {}) => {
+      clearTimeout(openT); keep();
+      if (!isOpen) return;
+      isOpen = false; pinned = false;
+      root.classList.remove('cal-open', 'cal-pinned');
+      cal.setAttribute('aria-hidden', 'true');
+      openLink.setAttribute('aria-expanded', 'false');
+      calTrigger.classList.remove('is-hot');
+      if (lenis) lenis.start();
+      if (returnFocus) openLink.focus({ preventScroll: true });
+    };
+    const closeSoon = () => {
+      clearTimeout(openT);
+      if (!pinned && !closeT) closeT = setTimeout(() => { closeT = 0; close(); }, 420);
+    };
+    const keep = () => { clearTimeout(closeT); closeT = 0; };
+    const within = (el, e) => {
+      const r = el.getBoundingClientRect();
+      return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    };
+
+    // Hover (mouse only): a short intent delay so scrolling past doesn't pop it.
+    calTrigger.addEventListener('pointerenter', e => {
+      if (e.pointerType !== 'mouse') return;
+      calTrigger.classList.add('is-hot');
+      keep();
+      openT = setTimeout(() => open(), 160);
+    });
+    calTrigger.addEventListener('pointerleave', e => {
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(openT);
+      if (!isOpen) calTrigger.classList.remove('is-hot');
+    });
+    // While peeking, stay open as long as the pointer is over the pop-up or the
+    // trigger. Position-based, because moving into the calendar iframe looks like
+    // "leaving" to this page.
+    document.addEventListener('pointermove', e => {
+      if (!isOpen || pinned || e.pointerType !== 'mouse') return;
+      if (within(cal, e) || within(calTrigger, e)) keep(); else closeSoon();
+    }, { passive: true });
+
+    // Click / tap / keyboard: open and keep it open.
+    openLink.addEventListener('click', e => {
+      e.preventDefault();
+      open({ pin: true, focus: e.detail === 0 });
+    });
+    // Picking a time inside the calendar moves focus into the iframe: pin it.
+    addEventListener('blur', () => {
+      if (isOpen && cal.contains(document.activeElement)) { pinned = true; keep(); root.classList.add('cal-pinned'); }
+    });
+
+    $('[data-cal-close]', cal).addEventListener('click', () => close({ returnFocus: true }));
+    backdrop.addEventListener('click', () => close());
+    $('[data-cal-alt]', cal).addEventListener('click', () => close());
+    addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) close({ returnFocus: true }); });
+  }
+
   /* ---------- Cursor: the brand dot follows you ---------- */
   const cursor = $('.cursor');
   if (cursor && getComputedStyle(cursor).display !== 'none') {

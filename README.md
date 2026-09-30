@@ -25,6 +25,7 @@ Drop the folder on any static host (Netlify, Vercel, Cloudflare Pages or GitHub 
 
 | What | Where |
 | --- | --- |
+| Booking link (`prasan-singh/30min`) | the `Cal.ns['30min']` calls in `assets/js/main.js`, plus the two fallback links in `index.html` (`.talk__btn`, `.cal__fallback`) |
 | Contact email (currently `hello@sirf.website`) | `index.html` (3 places), `assets/js/main.js` (mailto in the form handler) |
 | Instagram / LinkedIn URLs | footer in `index.html` |
 | Form backend (optional) | the form opens the visitor's email app. To collect submissions instead, point it at Formspree, Basin or a serverless function. |
@@ -49,7 +50,7 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 4. **Who we work with:** "Five clients. *Never a sixth.*" plus four client types. Edit the types in `index.html` (`.who__grid`).
 5. **What we do:** six services. Only the one in the centre of the screen is in focus; the others blur.
 6. **What's in the name?:** सिर्फ़ / صرف, "Sirf means *only*."
-7. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs.
+7. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs. Below that, "Sounds like you? Let's talk" sits on a soft red glow. Hovering over it opens a cal.com booking pop-up (30-minute call). The pop-up stays open once you click or pick a time, and closes with ×, Esc or a click outside. On phones it slides up as a sheet. The calendar script loads only when a visitor scrolls near this spot, and if cal.com can't load, the pop-up shows an "Open the calendar" link instead.
 8. **Method:** Listen, Commit, Craft, Deliver; the time promise ("sirf 6 hours of your month"); then "Numbers we'll put in writing" (5 clients max, 1 thing in focus per client, 0 handoffs, 100% senior eyes).
 9. **Contact:** "Tell us the one thing." brief form.
 10. **Ticker and footer:** a "Focus mode: on · Half-done deliverables shipped: 0…" ticker, then a giant wordmark with a red glow.
