@@ -126,27 +126,41 @@
     }
   }
 
-  /* ---------- Fit check: one persona at a time ---------- */
+  /* ---------- Fit check: one persona at a time, moving with the scroll ---------- */
   const fit = $('[data-fit]');
   if (fit) {
     const lines = $$('[data-fit-list] li', fit);
     const bars = $$('[data-fit-bar] i', fit);
     const cur = $('[data-fit-current]', fit);
-    let last = -1;
+    const n = lines.length;
+    const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+    let lastIdx = -1;
     const step = () => {
       const r = fit.getBoundingClientRect();
       const span = r.height - innerHeight;
-      if (span <= 0) return;
-      const p = clamp(-r.top / span, 0, .9999);
-      const idx = Math.floor(p * lines.length);
-      if (idx === last) return;
-      last = idx;
+      if (span <= 0 || r.bottom < 0 || r.top > innerHeight) return;
+      // f runs 0 → n across the pinned stretch; line i is centred at f = i + .5
+      const f = clamp(-r.top / span, 0, 1) * n;
       lines.forEach((l, i) => {
-        l.classList.toggle('is-active', i === idx);
-        l.classList.toggle('is-before', i < idx);
+        let d = f - (i + .5);
+        if (i === 0 && d < 0) d = 0;          // first line is already in place
+        if (i === n - 1 && d > 0) d = 0;      // last line stays until the end
+        const o = 1 - smooth(.26, .56, Math.abs(d)); // neighbours cross-fade, faintly
+        l.style.opacity = o.toFixed(3);
+        l.style.transform = `translate3d(0, calc(-50% + ${(-d * 170).toFixed(1)}px), 0)`;
+        l.style.filter = reduced || o > .98 ? 'none' : `blur(${((1 - o) * 6).toFixed(2)}px)`;
       });
-      bars.forEach((b, i) => { b.classList.toggle('is-active', i === idx); b.classList.toggle('is-done', i < idx); });
-      cur.textContent = String(idx + 1).padStart(2, '0');
+      const idx = clamp(Math.floor(f), 0, n - 1);
+      bars.forEach((b, i) => {
+        b.style.setProperty('--fill', clamp(f - i, 0, 1).toFixed(3));
+        b.classList.toggle('is-active', i === idx);
+        b.classList.toggle('is-done', i < idx);
+      });
+      if (idx !== lastIdx) {
+        lastIdx = idx;
+        lines.forEach((l, i) => l.classList.toggle('is-active', i === idx));
+        cur.textContent = String(idx + 1).padStart(2, '0');
+      }
     };
     onScrollFns.push(step);
     step();

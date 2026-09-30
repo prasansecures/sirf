@@ -391,7 +391,7 @@ body::after {
 .fit__bar { display: none; }
 
 /* sticky, one-at-a-time mode */
-.js .fit { height: calc(var(--count) * 70vh + 100vh); }
+.js .fit { height: calc(var(--count) * 58vh + 100vh); }
 .js .fit__sticky {
   position: sticky; top: 0;
   height: 100vh; height: 100svh;
@@ -406,22 +406,20 @@ body::after {
   padding: 0; border: 0;
   max-width: 17ch;
   opacity: 0;
-  transform: translateY(-30%);
-  filter: blur(8px);
-  transition: opacity .6s var(--ease), transform .8s var(--ease-out), filter .6s var(--ease);
+  transform: translateY(-50%);
+  /* position, fade and blur are driven by the scroll itself (main.js) */
+  will-change: transform, opacity;
   pointer-events: none;
 }
-.js .fit__list li.is-before { transform: translateY(-80%); }
-.js .fit__list li.is-active { opacity: 1; transform: translateY(-50%); filter: blur(0); }
 .js .fit__bar { display: grid; grid-template-columns: repeat(var(--count), 1fr); gap: 6px; }
 .fit__bar i { height: 3px; background: var(--line-light); border-radius: 2px; transition: background .4s; }
 .fit__bar i.is-done { background: var(--paper); }
 .fit__bar i.is-active { background: var(--red-hot); }
 
 /* ---------- Unfit ---------- */
-.unfit__inner { display: grid; gap: clamp(28px, 4vw, 48px); max-width: 1000px; }
+.unfit__inner { display: grid; justify-items: center; gap: clamp(28px, 4vw, 48px); max-width: 1000px; margin-inline: auto; text-align: center; }
 .unfit .h3 em { color: var(--red); }
-.strike-list { display: grid; gap: 2px; }
+.strike-list { display: grid; justify-items: center; gap: 2px; }
 .strike-list li {
   font-size: clamp(1.6rem, 1rem + 2.8vw, 3.4rem);
   font-weight: 700; letter-spacing: -.04em; line-height: 1.12;
@@ -910,22 +908,6 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
 .scroll-cue span { height: 22px; border-radius: 2px; background: rgba(28, 28, 28, .12); }
 .scroll-cue:hover { transform: translateY(-2px); }
 
-/* Marquee: a band of red glass, with a slow light sweep across it */
-.marquee {
-  background: linear-gradient(180deg, rgba(179, 38, 26, .80), rgba(146, 33, 21, .88));
-  -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .38),
-    inset 0 -1px 0 rgba(0, 0, 0, .18),
-    0 24px 50px -24px rgba(146, 33, 21, .6);
-}
-.marquee::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .16) 50%, transparent 65%) no-repeat;
-  background-size: 250% 100%;
-  animation: sheen 7s var(--ease) infinite;
-}
-@keyframes sheen { 0% { background-position: 130% 0; } 55%, 100% { background-position: -130% 0; } }
 
 /* Services: the small tags become glass pills */
 .tags li {
@@ -946,9 +928,14 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
   background: var(--glass-fill-dark);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
 }
-.fit__bar i { height: 5px; border-radius: 999px; background: rgba(255, 255, 255, .10); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
-.fit__bar i.is-done { background: rgba(244, 242, 238, .72); }
-.fit__bar i.is-active { background: var(--red-hot); box-shadow: 0 0 12px 1px rgba(179, 38, 26, .7), inset 0 1px 0 rgba(255, 255, 255, .45); }
+/* each segment fills continuously as you scroll through its line */
+.fit__bar i {
+  --bar: rgba(244, 242, 238, .72);
+  height: 5px; border-radius: 999px;
+  background: linear-gradient(90deg, var(--bar) calc(var(--fill, 0) * 100%), rgba(255, 255, 255, .10) 0);
+  transition: box-shadow .5s var(--ease);
+}
+.fit__bar i.is-active { --bar: var(--red-hot); box-shadow: 0 0 12px 1px rgba(179, 38, 26, .55); }
 
 /* Method: step numbers become glass beads; dividers fade in and out */
 .step__num {
@@ -964,18 +951,6 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
 }
 @media (max-width: 900px) { .step:nth-child(3)::before { display: none; } }
 @media (max-width: 540px) { .step + .step::before { display: none; } }
-
-/* Numbers we'll put in writing: each pledge on a glass card */
-.pledges div {
-  border-top: 0; padding: 22px 22px 24px; border-radius: 26px;
-  background:
-    radial-gradient(120% 90% at 0% 0%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 55%),
-    rgba(255, 255, 255, .30);
-  box-shadow: var(--glass-rim);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
-  transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out);
-}
-.pledges div:hover { transform: translateY(-4px); box-shadow: var(--glass-rim), 0 22px 40px -22px rgba(28, 28, 28, .35); }
 
 /* Form chips: glass capsules */
 .chips span { border-color: transparent; background: var(--glass-fill); box-shadow: var(--glass-rim); }
