@@ -455,30 +455,30 @@ html:not(.js) .strike-list li span { background-size: 100% .09em; }
   font-family: var(--serif); font-style: italic;
   font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.4rem); color: var(--muted);
 }
+/* A soft, borderless red hue that melts into the page, not a button shape */
 .talk__btn {
-  --size: clamp(168px, 12rem + 4vw, 240px);
+  --size: clamp(260px, 18rem + 8vw, 420px);
   position: relative; isolation: isolate;
-  width: var(--size); aspect-ratio: 1; border-radius: 50%;
-  display: grid; place-items: center; align-content: center; gap: 6px;
-  background: var(--red); color: var(--paper);
-  box-shadow:
-    0 0 0 14px rgba(146, 33, 21, .10),
-    0 0 0 30px rgba(146, 33, 21, .05),
-    0 18px 60px -10px rgba(179, 38, 26, .55);
-  transition: transform .6s var(--ease-out), background .4s var(--ease);
+  width: var(--size); aspect-ratio: 1;
+  margin-block: calc(var(--size) * -.22);
+  display: grid; place-items: center; align-content: center; gap: 8px;
+  color: var(--ink);
 }
-.talk__btn::before, .talk__btn::after {
-  content: ""; position: absolute; inset: -2px; z-index: -1;
-  border-radius: 50%; border: 1.5px solid var(--red);
-  animation: halo 2.8s var(--ease) infinite;
+.talk__btn::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(179, 38, 26, .30), rgba(179, 38, 26, .14) 45%, rgba(179, 38, 26, .04) 75%, transparent);
+  filter: blur(6px);
+  animation: breathe 5s var(--ease) infinite alternate;
+  transition: opacity .6s var(--ease);
 }
-.talk__btn::after { animation-delay: 1.4s; }
-@keyframes halo { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.55); opacity: 0; } }
-.talk__label { font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.2rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
-.talk__arrow { font-size: 1.4rem; transition: transform .5s var(--ease-out); }
-.talk__btn:hover { transform: scale(1.06); background: var(--ink); }
+@keyframes breathe { from { transform: scale(.92); opacity: .8; } to { transform: scale(1.04); opacity: 1; } }
+.talk__label { font-size: clamp(1.9rem, 1.3rem + 1.8vw, 3rem); font-weight: 800; letter-spacing: -.045em; line-height: 1; }
+.talk__arrow { font-size: 1.5rem; color: var(--red); transition: transform .5s var(--ease-out); }
+.talk__btn:hover::before { background: radial-gradient(closest-side, rgba(179, 38, 26, .42), rgba(179, 38, 26, .2) 45%, rgba(179, 38, 26, .06) 75%, transparent); }
 .talk__btn:hover .talk__arrow { transform: translateX(8px); }
-.talk__btn:focus-visible { outline-offset: 36px; border-radius: 50%; }
+.talk__btn:focus-visible { outline: none; }
+.talk__btn:focus-visible .talk__label { outline: 2px solid var(--red); outline-offset: 8px; border-radius: 2px; }
 
 /* ---------- Method ---------- */
 .method { border-top: 1px solid var(--line); }
