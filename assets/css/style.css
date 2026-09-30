@@ -943,7 +943,7 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
 }
 .js .fit__bar {
   padding: 6px; gap: 5px; border-radius: 999px;
-  background: var(--glass-fill-dark); box-shadow: var(--glass-rim-dark);
+  background: var(--glass-fill-dark);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
 }
 .fit__bar i { height: 5px; border-radius: 999px; background: rgba(255, 255, 255, .10); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
