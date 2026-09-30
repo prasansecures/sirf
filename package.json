@@ -1,0 +1,18 @@
+{
+  "name": "sirf",
+  "version": "1.0.0",
+  "description": "sirf. - One thing at a time. Media & Content House",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "lint": "echo 'No linting configured'"
+  },
+  "keywords": [
+    "media",
+    "content",
+    "agency"
+  ],
+  "author": "",
+  "license": "ISC"
+}
