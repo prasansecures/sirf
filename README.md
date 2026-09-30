@@ -31,6 +31,8 @@ The site is plain static files, so Vercel serves it as-is: no build step, no fra
 
 After that, every push to the production branch redeploys the site automatically.
 
+**Analytics:** Vercel Web Analytics and Speed Insights are wired in `index.html` and only load on `sirf.website` or `*.vercel.app`. Turn them on in the Vercel project (the **Analytics** and **Speed Insights** tabs) to start collecting.
+
 ## Before launch: things to fill in
 
 | What | Where |
