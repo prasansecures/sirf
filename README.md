@@ -17,9 +17,19 @@ assets/img/           favicon, touch icon, OG image, logo mark
 npx serve .        # or: python3 -m http.server
 ```
 
-## Deploy
+## Deploy (Vercel)
 
-Drop the folder on any static host (Netlify, Vercel, Cloudflare Pages or GitHub Pages) and point `sirf.website` at it.
+The site is plain static files, so Vercel serves it as-is: no build step, no framework. `vercel.json` adds clean URLs, security headers and caching for `assets/`.
+
+1. In Vercel: **Add New → Project → Import** the `prasansecures/sirf` GitHub repo.
+2. Framework preset: **Other**. Leave the build command and output directory empty. Deploy.
+3. **Settings → Git → Production Branch**: set it to the branch that holds the site.
+4. **Settings → Domains**: add `sirf.website` (and `www.sirf.website`, redirecting to it). Vercel shows the DNS records to add at your domain registrar:
+   - `sirf.website`: an **A** record pointing to the IP Vercel shows.
+   - `www`: a **CNAME** pointing to the target Vercel shows.
+   HTTPS is issued automatically once DNS resolves.
+
+After that, every push to the production branch redeploys the site automatically.
 
 ## Before launch: things to fill in
 
