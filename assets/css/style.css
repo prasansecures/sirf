@@ -662,6 +662,7 @@ html:not(.js) .strike-over > span { background-size: 100% .09em; }
 .name__copy p:not(.eyebrow) { font-size: clamp(1.1rem, 1rem + .5vw, 1.45rem); line-height: 1.4; }
 .name__copy p em { font-size: 1.12em; color: var(--red); }
 .name__copy b { font-weight: 800; }
+.promise b { font-weight: 800; color: var(--red); }
 .name__copy .h2 em { color: var(--red); }
 @media (max-width: 860px) {
   .name { grid-template-columns: 1fr; }
@@ -932,57 +933,6 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
   background: var(--glass-fill); box-shadow: var(--glass-rim);
   -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
   color: var(--ink);
-}
-
-/* Shine on the letters themselves (no block behind): a glossy fill, a
-   specular highlight that glides across the glyphs, and a soft glow that
-   hugs the letter shapes. */
-@keyframes glyph-shine { 0% { background-position: 140% 0, 0 0; } 55%, 100% { background-position: -140% 0, 0 0; } }
-
-/* "sirf" inline: glossy red glass letters */
-.glass-word {
-  display: inline-block; line-height: 1.05; font-weight: 800;
-  color: transparent;
-  background:
-    linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .95) 49%, rgba(255, 255, 255, .95) 51%, transparent 62%) no-repeat,
-    linear-gradient(172deg, #e0685a 0%, #b3261a 42%, #7e1a10 100%);
-  background-size: 260% 100%, 100% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  filter:
-    drop-shadow(0 0 .06em rgba(255, 255, 255, .95))
-    drop-shadow(0 .05em .22em rgba(179, 38, 26, .45));
-  animation: glyph-shine 4.8s var(--ease) infinite;
-}
-
-/* Name: सिर्फ़ / صرف as glass letters with their own shine */
-.name__hi, .name__ur {
-  /* a bright catch-light top-left, a smoky glass body, a fine edge, a
-     highlight gliding through, and a halo that follows the glyphs */
-  color: transparent;
-  background:
-    linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .9) 50%, transparent 60%) no-repeat,
-    linear-gradient(165deg, rgba(255, 255, 255, .98) 4%, rgba(255, 255, 255, .45) 30%, rgba(28, 28, 28, .42) 62%, rgba(28, 28, 28, .62) 82%, rgba(255, 255, 255, .55) 100%);
-  background-size: 260% 100%, 100% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-stroke: 1px rgba(28, 28, 28, .30);
-  filter:
-    drop-shadow(0 0 1px rgba(255, 255, 255, .95))
-    drop-shadow(0 0 .08em rgba(255, 255, 255, .8))
-    drop-shadow(0 .12em .28em rgba(28, 28, 28, .14));
-  animation: glyph-shine 6s var(--ease) infinite;
-}
-.name__ur {
-  background:
-    linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .9) 50%, transparent 60%) no-repeat,
-    linear-gradient(165deg, rgba(255, 255, 255, .95) 5%, rgba(214, 90, 78, .78) 38%, rgba(146, 33, 21, .94) 75%, rgba(255, 255, 255, .5) 100%);
-  background-size: 260% 100%, 100% 100%;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-stroke: 1px rgba(146, 33, 21, .35);
-  filter:
-    drop-shadow(0 0 1px rgba(255, 255, 255, .95))
-    drop-shadow(0 0 .1em rgba(255, 255, 255, .7))
-    drop-shadow(0 .1em .3em rgba(179, 38, 26, .35));
-  animation-delay: 1.2s;
 }
 
 /* Fit check: label, counter and progress sit on dark glass */
