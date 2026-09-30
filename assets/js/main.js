@@ -198,14 +198,16 @@
   /* ---------- cal.com: one loader, mounted inline wherever it's needed ---------- */
   const CAL_LINK = 'prasan-singh/sirfyou';
   const CAL_SCRIPT = 'https://app.cal.com/embed/embed.js';
-  // The calendar's own surfaces are made transparent so our glass shows through.
-  const CAL_GLASS = {
-    'cal-bg': 'transparent',
-    'cal-bg-muted': 'rgba(255,255,255,0.28)',
-    'cal-bg-subtle': 'rgba(255,255,255,0.22)',
-    'cal-bg-emphasis': 'rgba(28,28,28,0.08)',
-    'cal-border': 'rgba(28,28,28,0.10)',
-    'cal-border-subtle': 'rgba(28,28,28,0.06)',
+  // Solid brand surfaces for the calendar itself. (Transparent surfaces let
+  // cal.com's stacked panels and its dimming layer bleed through each other;
+  // the glass now frames the calendar instead of running through it.)
+  const CAL_THEME = {
+    'cal-bg': '#f4f2ee',
+    'cal-bg-muted': '#ebe8e2',
+    'cal-bg-subtle': '#efece6',
+    'cal-bg-emphasis': '#e2ded6',
+    'cal-border': '#dcd8d0',
+    'cal-border-subtle': '#e6e2da',
     'cal-border-booker': 'transparent',
     'cal-brand': '#1e1e1e',
   };
@@ -222,7 +224,7 @@
       calLink: CAL_LINK,
       config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', theme: 'light' },
     });
-    Cal.ns[ns]('ui', { theme: 'light', cssVarsPerTheme: { light: CAL_GLASS, dark: CAL_GLASS }, hideEventTypeDetails: true, layout: 'month_view' });
+    Cal.ns[ns]('ui', { theme: 'light', cssVarsPerTheme: { light: CAL_THEME, dark: CAL_THEME }, hideEventTypeDetails: true, layout: 'month_view' });
     const ready = () => stage.classList.add('is-ready');
     const fail = () => { if (!stage.classList.contains('is-ready')) stage.classList.add('is-failed'); };
     Cal.ns[ns]('on', { action: 'linkReady', callback: ready });
@@ -339,19 +341,28 @@
   if (cursor && getComputedStyle(cursor).display !== 'none') {
     let x = -100, y = -100, cx = x, cy = y, raf = 0;
     const loop = () => {
-      cx += (x - cx) * .22; cy += (y - cy) * .22;
+      cx += (x - cx) * .38; cy += (y - cy) * .38;
       cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
       raf = Math.abs(x - cx) + Math.abs(y - cy) > .1 ? requestAnimationFrame(loop) : 0;
     };
+    const hide = () => cursor.classList.remove('is-on');
+    // cal.com wraps its iframe in a custom element, so match the containers too
+    const overFrame = t => t.tagName === 'IFRAME' || !!t.closest('.cal__embed, .contact-cal__embed');
     addEventListener('pointermove', e => {
-      x = e.clientX; y = e.clientY;
-      cursor.classList.add('is-on');
       const t = e.target;
+      // Over an embedded frame (the cal.com calendar) this page stops getting
+      // pointer moves, so the dot would freeze at its edge. Hide it there.
+      if (overFrame(t)) { hide(); return; }
+      x = e.clientX; y = e.clientY;
+      if (!cursor.classList.contains('is-on')) { cx = x; cy = y; } // reappear under the pointer, no glide
+      cursor.classList.add('is-on');
       cursor.classList.toggle('is-hover', !!t.closest('a, button, label, input, textarea, .focus-item'));
       cursor.classList.toggle('is-dark', !!t.closest('.manifesto, .fit, .footer, .marquee, .menu'));
       if (!raf) raf = requestAnimationFrame(loop);
     }, { passive: true });
-    document.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
+    document.addEventListener('pointerover', e => { if (overFrame(e.target)) hide(); });
+    document.addEventListener('pointerleave', hide);
+    addEventListener('blur', hide);
   }
 
   /* ---------- Footer year ---------- */
