@@ -47,10 +47,11 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 1. **Hero:** dictionary definition of *sirf* (Hindi/Urdu for "only"), with "One thing / *at a time*" and the red dot dropping in.
 2. **Marquee:** the disciplines.
 3. **Manifesto:** words light up as you scroll.
+3b. **Who we work with:** "Five clients. *Never a sixth.*" plus five client types. Edit the types in `index.html` (`.who__grid`).
 4. **What we do:** six services. Only the one in the centre of the screen is in focus; the others blur.
 5. **What's in the name?:** सिर्फ़ / صرف, "Sirf means *only*."
-6. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs.
-7. **Method:** Listen, Commit, Craft, Deliver, then "Numbers we'll put in writing."
+6. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs, then a 30-second yes/no **fit quiz** that asks one question at a time. The questions and expected answers are the `data-fit-answer` items in `index.html`; the result wording is in `assets/js/main.js`.
+7. **Method:** Listen, Commit, Craft, Deliver; the time promise ("about 3 hours of your month"); then "Numbers we'll put in writing" (5 clients max, 1 thing in focus per client, 0 handoffs, 100% senior eyes).
 8. **Reel:** a showreel slot with a handwritten "Showreel 2026" note.
 9. **Contact:** "Tell us the one thing." brief form.
 10. **Ticker and footer:** a "Focus mode: on · Half-done deliverables shipped: 0…" ticker, then a giant wordmark with a red glow.

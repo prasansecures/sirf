@@ -82,7 +82,7 @@
     // mark the "one thing at a time." and "full attention." phrases
     spans.forEach((s, i) => {
       const run = spans.slice(i, i + 5).map(x => x.textContent.toLowerCase()).join(' ');
-      if (run === 'one thing at a time.') spans.slice(i, i + 5).forEach(x => x.classList.add('is-key'));
+      if (run === 'one thing at a time.' || run === 'five clients, never a sixth,') spans.slice(i, i + 5).forEach(x => x.classList.add('is-key'));
       if (run.startsWith('full attention.')) spans.slice(i, i + 2).forEach(x => x.classList.add('is-key'));
     });
     const light = () => {
@@ -150,6 +150,44 @@
     };
     onScrollFns.push(step);
     step();
+  }
+
+  /* ---------- Fit quiz: one question at a time ---------- */
+  const quiz = $('[data-quiz]');
+  if (quiz) {
+    const qs = $$('.quiz__qs li', quiz);
+    const stepEl = $('[data-quiz-step]', quiz);
+    const result = $('[data-quiz-result]', quiz);
+    const verdict = $('[data-quiz-verdict]', quiz);
+    const note = $('[data-quiz-note]', quiz);
+    const cta = $('[data-quiz-cta]', quiz);
+    const outcomes = [
+      [4, 'You\'ll <em>enjoy</em> working with us.', 'Four for four. You sound like exactly who we built sirf. for. Tell us the one thing that matters most.', true],
+      [3, 'Close <em>enough.</em> Let\'s talk.', 'Three out of four. The best partnerships start with one honest conversation.', true],
+      [0, 'We\'re probably <em>not</em> for you.', 'And that\'s fine. We\'d rather tell you now than disappoint you later. We hope you find the right fit.', false],
+    ];
+    let step = 0, score = 0;
+    const show = () => {
+      qs.forEach((q, i) => q.classList.toggle('is-active', i === step));
+      stepEl.textContent = Math.min(step + 1, qs.length);
+    };
+    $$('[data-quiz-answer]', quiz).forEach(btn => btn.addEventListener('click', () => {
+      if (btn.dataset.quizAnswer === qs[step].dataset.fitAnswer) score++;
+      step++;
+      if (step < qs.length) { show(); return; }
+      const [, v, n, fit] = outcomes.find(([min]) => score >= min);
+      verdict.innerHTML = v;
+      note.textContent = n;
+      cta.hidden = !fit;
+      quiz.classList.add('is-done');
+      result.hidden = false;
+    }));
+    $('[data-quiz-restart]', quiz).addEventListener('click', () => {
+      step = 0; score = 0;
+      quiz.classList.remove('is-done');
+      result.hidden = true;
+      show();
+    });
   }
 
   /* ---------- Reel ---------- */
