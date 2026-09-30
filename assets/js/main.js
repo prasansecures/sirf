@@ -70,7 +70,7 @@
       navLinks.forEach(a => a.classList.toggle('is-current', a.hash === '#' + e.target.id));
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['what', 'fit', 'method', 'reel'].forEach(id => { const s = document.getElementById(id); if (s) sectionIO.observe(s); });
+  ['what', 'fit', 'method'].forEach(id => { const s = document.getElementById(id); if (s) sectionIO.observe(s); });
 
   /* ---------- Manifesto: words light up as you read ---------- */
   const words = $('[data-words]');
@@ -152,72 +152,6 @@
     step();
   }
 
-  /* ---------- Fit quiz: one question at a time ---------- */
-  const quiz = $('[data-quiz]');
-  if (quiz) {
-    const qs = $$('.quiz__qs li', quiz);
-    const stepEl = $('[data-quiz-step]', quiz);
-    const result = $('[data-quiz-result]', quiz);
-    const verdict = $('[data-quiz-verdict]', quiz);
-    const note = $('[data-quiz-note]', quiz);
-    const cta = $('[data-quiz-cta]', quiz);
-    const outcomes = [
-      [4, 'You\'ll <em>enjoy</em> working with us.', 'Four for four. You sound like exactly who we built sirf. for. Tell us the one thing that matters most.', true],
-      [3, 'Close <em>enough.</em> Let\'s talk.', 'Three out of four. The best partnerships start with one honest conversation.', true],
-      [0, 'We\'re probably <em>not</em> for you.', 'And that\'s fine. We\'d rather tell you now than disappoint you later. We hope you find the right fit.', false],
-    ];
-    let step = 0, score = 0;
-    const show = () => {
-      qs.forEach((q, i) => q.classList.toggle('is-active', i === step));
-      stepEl.textContent = Math.min(step + 1, qs.length);
-    };
-    $$('[data-quiz-answer]', quiz).forEach(btn => btn.addEventListener('click', () => {
-      if (btn.dataset.quizAnswer === qs[step].dataset.fitAnswer) score++;
-      step++;
-      if (step < qs.length) { show(); return; }
-      const [, v, n, fit] = outcomes.find(([min]) => score >= min);
-      verdict.innerHTML = v;
-      note.textContent = n;
-      cta.hidden = !fit;
-      quiz.classList.add('is-done');
-      result.hidden = false;
-    }));
-    $('[data-quiz-restart]', quiz).addEventListener('click', () => {
-      step = 0; score = 0;
-      quiz.classList.remove('is-done');
-      result.hidden = true;
-      show();
-    });
-  }
-
-  /* ---------- Reel ---------- */
-  const reel = $('[data-reel]');
-  if (reel) {
-    const btn = $('[data-reel-play]', reel);
-    const label = $('[data-reel-label]', reel);
-    const src = (reel.dataset.src || '').trim();
-    if (!src) {
-      label.textContent = 'Reel on request';
-      btn.addEventListener('click', () => { location.hash = '#contact'; });
-    } else {
-      btn.addEventListener('click', () => {
-        let el;
-        if (/youtube|youtu\.be|vimeo/.test(src)) {
-          el = document.createElement('iframe');
-          el.src = src + (src.includes('?') ? '&' : '?') + 'autoplay=1';
-          el.allow = 'autoplay; fullscreen; picture-in-picture';
-          el.allowFullscreen = true;
-          el.title = 'sirf. showreel';
-        } else {
-          el = document.createElement('video');
-          el.src = src; el.controls = true; el.autoplay = true; el.playsInline = true;
-        }
-        reel.appendChild(el);
-        btn.remove();
-      });
-    }
-  }
-
   /* ---------- Contact: compose an email (no backend needed) ---------- */
   const form = $('[data-contact]');
   if (form) {
@@ -261,7 +195,7 @@
       cursor.classList.add('is-on');
       const t = e.target;
       cursor.classList.toggle('is-hover', !!t.closest('a, button, label, input, textarea, .focus-item'));
-      cursor.classList.toggle('is-dark', !!t.closest('.manifesto, .fit, .reel, .footer, .marquee, .menu'));
+      cursor.classList.toggle('is-dark', !!t.closest('.manifesto, .fit, .footer, .marquee, .menu'));
       if (!raf) raf = requestAnimationFrame(loop);
     }, { passive: true });
     document.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
