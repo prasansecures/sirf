@@ -1,4 +1,4 @@
-/* sirf. — One thing at a time. */
+/* sirf. One thing at a time. */
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -166,11 +166,11 @@
       });
       if (!ok) { note.textContent = 'Just the essentials: name, email and a line on what excellent looks like.'; return; }
       const d = new FormData(form);
-      const subject = `New project: ${d.get('need')} — ${d.get('brand') || d.get('name')}`;
+      const subject = `New project: ${d.get('need')} for ${d.get('brand') || d.get('name')}`;
       const body = [
         `Name: ${d.get('name')}`,
         `Email: ${d.get('email')}`,
-        `Brand: ${d.get('brand') || '—'}`,
+        `Brand: ${d.get('brand') || 'Not given'}`,
         `The one thing: ${d.get('need')}`,
         '',
         d.get('message'),
