@@ -822,7 +822,7 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
   font-weight: 700; letter-spacing: -.04em; line-height: 1.04;
 }
 .promise em { color: var(--red); font-size: 1.06em; }
-.promise b { font-weight: 800; color: var(--red); }
+
 
 /* ---------- Ticker ---------- */
 .ticker {
@@ -852,6 +852,176 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
 }
 .loader__mark .dot { width: .2em; height: .2em; margin-left: .1em; animation: drop .7s .3s both cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes loader-out { to { transform: translateY(-100%); visibility: hidden; } }
+
+/* =========================================================
+   Liquid glass details (iOS-style): light that sits on things
+   ========================================================= */
+:root {
+  /* light glass on the off-white page */
+  --glass-fill: rgba(255, 255, 255, .46);
+  --glass-rim:
+    inset 0 1px 1px rgba(255, 255, 255, .95),
+    inset 0 -1px 1px rgba(255, 255, 255, .3),
+    0 1px 2px rgba(28, 28, 28, .06),
+    0 8px 24px -12px rgba(28, 28, 28, .22);
+  /* dark glass on ink and black sections */
+  --glass-fill-dark: rgba(255, 255, 255, .07);
+  --glass-rim-dark:
+    inset 0 1px 0 rgba(255, 255, 255, .22),
+    inset 0 -1px 0 rgba(255, 255, 255, .05),
+    0 8px 24px -12px rgba(0, 0, 0, .6);
+}
+
+/* Nav: once you scroll, it lifts into a floating glass capsule */
+.nav { transition: transform .5s var(--ease-out), inset .6s var(--ease-out), height .6s var(--ease-out), border-radius .6s var(--ease-out), background .4s, box-shadow .4s, padding .6s var(--ease-out); }
+.nav.is-scrolled {
+  inset: 10px max(12px, calc((100vw - 1200px) / 2)) auto;
+  height: 60px; padding: 0 10px 0 22px;
+  border-radius: 999px; border-color: transparent;
+  background: rgba(244, 242, 238, .58);
+  -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow: var(--glass-rim);
+}
+.nav.is-hidden { transform: translateY(calc(-100% - 24px)); }
+.menu-open .nav.is-scrolled { background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* "Focus mode: on" reads like the iOS Focus pill */
+.status {
+  padding: 7px 13px 6px 10px; border-radius: 999px;
+  background: var(--glass-fill); box-shadow: var(--glass-rim);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  color: var(--ink);
+}
+
+/* Buttons: a lit top edge, and they press in like iOS controls */
+.btn { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 6px 18px -8px rgba(28, 28, 28, .45); }
+.btn, .switch__tab, .chips span, .cal__close, .talk__btn, .tags li { -webkit-tap-highlight-color: transparent; }
+.btn:active, .switch__tab:active, .chips label:active span, .talk__btn:active { transform: scale(.97); }
+.btn, .chips span { transition: transform .25s var(--ease-out), color .4s var(--ease), background .3s, border-color .3s, box-shadow .3s; }
+
+/* Hero: the scroll cue becomes a small glass capsule */
+.scroll-cue {
+  padding: 10px 16px 10px 12px; border-radius: 999px;
+  background: var(--glass-fill); box-shadow: var(--glass-rim);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5); backdrop-filter: blur(12px) saturate(1.5);
+  transition: transform .4s var(--ease-out), box-shadow .4s;
+}
+.scroll-cue span { height: 22px; border-radius: 2px; background: rgba(28, 28, 28, .12); }
+.scroll-cue:hover { transform: translateY(-2px); }
+
+/* Marquee: a band of red glass, with a slow light sweep across it */
+.marquee {
+  background: linear-gradient(180deg, rgba(179, 38, 26, .80), rgba(146, 33, 21, .88));
+  -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .38),
+    inset 0 -1px 0 rgba(0, 0, 0, .18),
+    0 24px 50px -24px rgba(146, 33, 21, .6);
+}
+.marquee::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .16) 50%, transparent 65%) no-repeat;
+  background-size: 250% 100%;
+  animation: sheen 7s var(--ease) infinite;
+}
+@keyframes sheen { 0% { background-position: 130% 0; } 55%, 100% { background-position: -130% 0; } }
+
+/* Manifesto: the lit words reflect on the black like a glass floor */
+.manifesto__text {
+  -webkit-box-reflect: below 8px linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, .26));
+}
+
+/* Services: the small tags become glass pills */
+.tags li {
+  border: 0;
+  background: var(--glass-fill); box-shadow: var(--glass-rim);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
+  color: var(--ink);
+}
+
+/* "sirf" inline: a little glass capsule around the word */
+.glass-word {
+  display: inline-block; line-height: 1.05;
+  padding: .02em .32em .08em; margin: 0 .04em; border-radius: .42em;
+  color: var(--red); font-weight: 800;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, .32));
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, .95),
+    inset 0 -1px 1px rgba(146, 33, 21, .10),
+    0 1px 2px rgba(28, 28, 28, .06),
+    0 .2em .6em -.25em rgba(146, 33, 21, .35);
+}
+
+/* Name: सिर्फ़ / صرف as glass letters over a soft red light */
+.name__words { position: relative; isolation: isolate; }
+.name__words::before {
+  content: ""; position: absolute; z-index: -1; left: -4%; top: -6%;
+  width: 78%; aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(179, 38, 26, .38), rgba(179, 38, 26, .14) 55%, transparent);
+  filter: blur(18px);
+  animation: breathe 6s var(--ease) infinite alternate;
+}
+.name__hi, .name__ur {
+  /* glass letters: a bright top-left catch-light fading through a smoky body,
+     a fine dark edge for definition, and a soft shadow underneath */
+  color: transparent;
+  background: linear-gradient(165deg, rgba(255, 255, 255, .98) 4%, rgba(255, 255, 255, .45) 30%, rgba(28, 28, 28, .42) 62%, rgba(28, 28, 28, .62) 82%, rgba(255, 255, 255, .55) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-stroke: 1px rgba(28, 28, 28, .30);
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .9)) drop-shadow(0 16px 22px rgba(28, 28, 28, .16));
+}
+.name__ur {
+  background: linear-gradient(165deg, rgba(255, 255, 255, .95) 5%, rgba(214, 90, 78, .75) 38%, rgba(146, 33, 21, .92) 75%, rgba(255, 255, 255, .5) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-stroke: 1px rgba(146, 33, 21, .35);
+}
+
+/* Fit check: label, counter and progress sit on dark glass */
+.fit .eyebrow, .fit__count {
+  padding: 8px 14px 7px; border-radius: 999px;
+  background: var(--glass-fill-dark); box-shadow: var(--glass-rim-dark);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.js .fit__bar {
+  padding: 6px; gap: 5px; border-radius: 999px;
+  background: var(--glass-fill-dark); box-shadow: var(--glass-rim-dark);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.fit__bar i { height: 5px; border-radius: 999px; background: rgba(255, 255, 255, .10); transition: background .5s var(--ease), box-shadow .5s var(--ease); }
+.fit__bar i.is-done { background: rgba(244, 242, 238, .72); }
+.fit__bar i.is-active { background: var(--red-hot); box-shadow: 0 0 12px 1px rgba(179, 38, 26, .7), inset 0 1px 0 rgba(255, 255, 255, .45); }
+
+/* Method: step numbers become glass beads; dividers fade in and out */
+.step__num {
+  display: inline-grid; place-items: center; justify-self: start;
+  width: 46px; height: 46px; border-radius: 50%; letter-spacing: 0;
+  background: var(--glass-fill); box-shadow: var(--glass-rim);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.step + .step { border-left: 0; }
+.step + .step::before {
+  content: ""; position: absolute; left: 0; top: 8%; bottom: 8%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(28, 28, 28, .16) 25%, rgba(28, 28, 28, .16) 75%, transparent);
+}
+@media (max-width: 900px) { .step:nth-child(3)::before { display: none; } }
+@media (max-width: 540px) { .step + .step::before { display: none; } }
+
+/* Numbers we'll put in writing: each pledge on a glass card */
+.pledges div {
+  border-top: 0; padding: 22px 22px 24px; border-radius: 26px;
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 55%),
+    rgba(255, 255, 255, .30);
+  box-shadow: var(--glass-rim);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+  transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out);
+}
+.pledges div:hover { transform: translateY(-4px); box-shadow: var(--glass-rim), 0 22px 40px -22px rgba(28, 28, 28, .35); }
+
+/* Form chips: glass capsules */
+.chips span { border-color: transparent; background: var(--glass-fill); box-shadow: var(--glass-rim); }
+.chips label:hover span { border-color: transparent; background: rgba(255, 255, 255, .7); }
+.chips input:checked + span { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 6px 16px -8px rgba(28, 28, 28, .5); }
 
 /* ---------- Reveal ---------- */
 .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1.1s var(--ease-out); }
