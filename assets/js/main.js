@@ -175,8 +175,8 @@
         '',
         d.get('message'),
       ].join('\n');
-      location.href = `mailto:hello@sirf.website?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      note.textContent = 'Opening your email app. If nothing happens, write to hello@sirf.website.';
+      location.href = `mailto:sirfconvos@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      note.textContent = 'Opening your email app. If nothing happens, write to sirfconvos@gmail.com.';
     });
     form.addEventListener('input', e => e.target.closest('.field')?.classList.remove('is-invalid'));
   }
