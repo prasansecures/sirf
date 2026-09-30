@@ -37,7 +37,7 @@ After that, every push to the production branch redeploys the site automatically
 | --- | --- |
 | Booking link (`prasan-singh/sirfyou`) | `CAL_LINK` in `assets/js/main.js` (used by the pop-up and the contact section) |
 | Contact email (currently `sirfconvos@gmail.com`) | `index.html` (3 places), `assets/js/main.js` (mailto in the form handler) |
-| Instagram / LinkedIn URLs | footer in `index.html` |
+| LinkedIn (currently the founder, `linkedin.com/in/prasan-singh`); add Instagram back when ready | footer in `index.html` |
 | Form backend (optional) | the form opens the visitor's email app. To collect submissions instead, point it at Formspree, Basin or a serverless function. |
 
 ## Brand
