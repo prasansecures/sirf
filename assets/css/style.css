@@ -9,7 +9,6 @@
   --red: #922115;
   --red-hot: #b3261a;
   --paper: #f4f2ee;
-  --paper-hi: #fffefa;
 
   --muted: #5e5b56;
   --muted-light: #a19d96;
@@ -53,7 +52,7 @@ button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; }
 ul, ol { list-style: none; padding: 0; }
 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
-::selection { background: var(--red); color: var(--paper-hi); }
+::selection { background: var(--red); color: var(--paper); }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
 
 /* Film grain */
@@ -110,7 +109,7 @@ body::after {
   display: inline-flex; align-items: center; justify-content: center; gap: .55em;
   height: var(--h); padding: 0 1.5em;
   border-radius: 999px;
-  background: var(--ink); color: var(--paper-hi);
+  background: var(--ink); color: var(--paper);
   font-weight: 600; letter-spacing: -.01em;
   position: relative; overflow: hidden; isolation: isolate;
   transition: color .4s var(--ease);
@@ -124,7 +123,7 @@ body::after {
 }
 .btn:hover::before { transform: translateY(0); }
 .btn .dot { margin: 0; width: .45em; height: .45em; background: var(--red); transition: background .4s; }
-.btn:hover .dot { background: var(--paper-hi); }
+.btn:hover .dot { background: var(--paper); }
 .btn--sm { --h: 42px; font-size: .92rem; padding: 0 1.2em; }
 .btn--lg { --h: 64px; font-size: 1.15rem; padding: 0 2em; }
 
@@ -282,7 +281,7 @@ body::after {
 
 /* ---------- Marquee ---------- */
 .marquee {
-  background: var(--red); color: var(--paper-hi);
+  background: var(--red); color: var(--paper);
   overflow: hidden; padding: clamp(16px, 2vw, 26px) 0;
   transform: rotate(-1.2deg) scale(1.02);
   position: relative; z-index: 2;
@@ -294,7 +293,7 @@ body::after {
   font-size: clamp(1.6rem, 1rem + 2.6vw, 3.4rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; white-space: nowrap;
 }
 .marquee__track span:nth-of-type(even) { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
-.marquee__track i { width: .32em; height: .32em; border-radius: 50%; background: var(--paper-hi); flex: none; }
+.marquee__track i { width: .32em; height: .32em; border-radius: 50%; background: var(--paper); flex: none; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(calc(-50% - clamp(22px, 3vw, 44px) / 2)); } }
 
@@ -385,6 +384,8 @@ body::after {
   counter-reset: fit;
 }
 .fit__list li { padding: .25em 0; border-top: 1px solid var(--line-light); }
+/* Leading ellipsis: same fixed gap before every statement */
+.ell, .fit__list li::before { display: inline-block; margin-right: .22em; }
 .fit__list li::before { content: "…"; color: var(--red-hot); }
 .fit__list em { color: var(--red-hot); font-size: 1.05em; }
 .fit__bar { display: none; }
@@ -428,17 +429,56 @@ body::after {
   padding: .08em 0;
   position: relative; width: fit-content;
 }
-.strike-list li::after {
-  content: ""; position: absolute; left: -.1em; right: -.1em; top: 55%;
-  height: .09em; background: var(--red);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .8s var(--ease-out);
+/* Strike line is a background on the inline text, so it follows wrapped
+   lines and sweeps across them in reading order. --strike-y centres it on
+   the x-height of League Spartan. */
+.strike-list li span {
+  --strike-y: .45em;
+  background: linear-gradient(var(--red), var(--red)) no-repeat 0 var(--strike-y) / 0 .09em;
+  transition: background-size 1s var(--ease-out);
+  padding: 0 .06em;
+  margin: 0 -.06em;
 }
-.strike-list.is-in li::after { transform: scaleX(1); }
-.strike-list.is-in li:nth-child(2)::after { transition-delay: .15s; }
-.strike-list.is-in li:nth-child(3)::after { transition-delay: .3s; }
-.strike-list.is-in li:nth-child(4)::after { transition-delay: .45s; }
-html:not(.js) .strike-list li::after { transform: scaleX(1); }
+.strike-list.is-in li span { background-size: 100% .09em; }
+.strike-list.is-in li:nth-child(2) span { transition-delay: .15s; }
+.strike-list.is-in li:nth-child(3) span { transition-delay: .3s; }
+.strike-list.is-in li:nth-child(4) span { transition-delay: .45s; }
+html:not(.js) .strike-list li span { background-size: 100% .09em; }
+
+/* ---------- Let's talk ---------- */
+.talk {
+  display: grid; justify-items: center; gap: clamp(22px, 3vw, 36px);
+  margin-top: clamp(72px, 10vw, 140px);
+  text-align: center;
+}
+.talk__lead {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.4rem); color: var(--muted);
+}
+.talk__btn {
+  --size: clamp(168px, 12rem + 4vw, 240px);
+  position: relative; isolation: isolate;
+  width: var(--size); aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; align-content: center; gap: 6px;
+  background: var(--red); color: var(--paper);
+  box-shadow:
+    0 0 0 14px rgba(146, 33, 21, .10),
+    0 0 0 30px rgba(146, 33, 21, .05),
+    0 18px 60px -10px rgba(179, 38, 26, .55);
+  transition: transform .6s var(--ease-out), background .4s var(--ease);
+}
+.talk__btn::before, .talk__btn::after {
+  content: ""; position: absolute; inset: -2px; z-index: -1;
+  border-radius: 50%; border: 1.5px solid var(--red);
+  animation: halo 2.8s var(--ease) infinite;
+}
+.talk__btn::after { animation-delay: 1.4s; }
+@keyframes halo { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.55); opacity: 0; } }
+.talk__label { font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.2rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.talk__arrow { font-size: 1.4rem; transition: transform .5s var(--ease-out); }
+.talk__btn:hover { transform: scale(1.06); background: var(--ink); }
+.talk__btn:hover .talk__arrow { transform: translateX(8px); }
+.talk__btn:focus-visible { outline-offset: 36px; border-radius: 50%; }
 
 /* ---------- Method ---------- */
 .method { border-top: 1px solid var(--line); }
@@ -485,7 +525,7 @@ html:not(.js) .strike-list li::after { transform: scaleX(1); }
 
 /* ---------- Name ---------- */
 .name {
-  background: var(--paper-hi);
+  background: var(--paper);
   border-top: 1px solid var(--line);
   padding: clamp(100px, 13vw, 200px) var(--gutter);
   display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 110px);
@@ -544,7 +584,7 @@ html:not(.js) .strike-list li::after { transform: scaleX(1); }
   transition: background .3s, color .3s, border-color .3s;
 }
 .chips label:hover span { border-color: var(--ink); }
-.chips input:checked + span { background: var(--ink); color: var(--paper-hi); border-color: var(--ink); }
+.chips input:checked + span { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .chips input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 3px; }
 
 .field { position: relative; }
@@ -625,6 +665,7 @@ html:not(.js) .strike-list li::after { transform: scaleX(1); }
   font-weight: 700; letter-spacing: -.04em; line-height: 1.04;
 }
 .promise em { color: var(--red); font-size: 1.06em; }
+.promise b { font-weight: 800; color: var(--red); }
 
 /* ---------- Ticker ---------- */
 .ticker {

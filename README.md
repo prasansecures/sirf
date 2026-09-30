@@ -50,7 +50,7 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 5. **What we do:** six services. Only the one in the centre of the screen is in focus; the others blur.
 6. **What's in the name?:** सिर्फ़ / صرف, "Sirf means *only*."
 7. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs.
-8. **Method:** Listen, Commit, Craft, Deliver; the time promise ("about 3 hours of your month"); then "Numbers we'll put in writing" (5 clients max, 1 thing in focus per client, 0 handoffs, 100% senior eyes).
+8. **Method:** Listen, Commit, Craft, Deliver; the time promise ("sirf 6 hours of your month"); then "Numbers we'll put in writing" (5 clients max, 1 thing in focus per client, 0 handoffs, 100% senior eyes).
 9. **Contact:** "Tell us the one thing." brief form.
 10. **Ticker and footer:** a "Focus mode: on · Half-done deliverables shipped: 0…" ticker, then a giant wordmark with a red glow.
 
