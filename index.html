@@ -250,10 +250,10 @@
       <div class="unfit__inner">
         <h2 class="h3"><span class="ell">&hellip;</span>and probably <em>won't</em> if you:</h2>
         <ul class="strike-list" data-reveal>
-          <li><span>want forty posts by Friday.</span></li>
-          <li><span>measure creativity by the kilo.</span></li>
-          <li><span>need a vendor, not a partner.</span></li>
-          <li><span>think “good enough” is a strategy.</span></li>
+          <li><span>want forty posts by Friday.</span><span class="strike-over" aria-hidden="true"><span>want forty posts by Friday.</span></span></li>
+          <li><span>measure creativity by the kilo.</span><span class="strike-over" aria-hidden="true"><span>measure creativity by the kilo.</span></span></li>
+          <li><span>need a vendor, not a partner.</span><span class="strike-over" aria-hidden="true"><span>need a vendor, not a partner.</span></span></li>
+          <li><span>think “good enough” is a strategy.</span><span class="strike-over" aria-hidden="true"><span>think “good enough” is a strategy.</span></span></li>
         </ul>
       </div>
 
@@ -316,7 +316,22 @@
         <p class="contact__mail"><a href="mailto:hello@sirf.website">hello@sirf.website</a></p>
       </div>
 
-      <form class="form" data-contact novalidate>
+      <div class="contact__side">
+        <div class="switch" role="tablist" aria-label="How would you like to start?">
+          <button class="switch__tab" type="button" role="tab" aria-selected="true" aria-controls="pane-book" data-pane-tab="book">Book a call</button>
+          <button class="switch__tab" type="button" role="tab" aria-selected="false" aria-controls="pane-brief" data-pane-tab="brief">Send a brief</button>
+        </div>
+
+        <div class="contact-cal" id="pane-book" role="tabpanel" data-pane="book" data-cal-stage>
+          <p class="cal__loading"><span class="dot"></span>Loading calendar</p>
+          <div class="cal__retry">
+            <p>The calendar couldn't load here.</p>
+            <button class="cal__retry-btn" type="button" data-pane-tab="brief">Send a brief instead</button>
+          </div>
+          <div class="contact-cal__embed" id="sirf-cal-contact"></div>
+        </div>
+
+      <form class="form" id="pane-brief" role="tabpanel" data-pane="brief" data-contact novalidate hidden>
         <fieldset class="chips">
           <legend>What's the one thing?</legend>
           <label><input type="radio" name="need" value="Brand film" checked><span>Brand film</span></label>
@@ -346,6 +361,7 @@
         <button class="btn btn--lg" type="submit">Send it <span class="dot"></span></button>
         <p class="form__note" data-form-note role="status" aria-live="polite"></p>
       </form>
+      </div>
     </section>
   </main>
 
@@ -357,22 +373,18 @@
     </div>
   </div>
 
-  <!-- ============ BOOKING POP-UP (cal.com, frosted glass) ============ -->
+  <!-- ============ BOOKING POP-UP (cal.com on liquid glass) ============ -->
   <div class="cal-backdrop" data-cal-backdrop aria-hidden="true"></div>
-  <div class="cal" id="cal" role="dialog" aria-label="Book a call with sirf." aria-hidden="true" data-cal data-lenis-prevent
-       data-cal-src="https://cal.com/prasan-singh/sirfyou?embed=true&amp;layout=month_view&amp;theme=dark">
-    <div class="cal__head">
-      <p class="cal__title">Let's talk<span class="dot"></span></p>
-      <button class="cal__close" type="button" aria-label="Close" data-cal-close><span></span><span></span></button>
-    </div>
-    <div class="cal__body" data-cal-body>
+  <div class="cal" id="cal" role="dialog" aria-label="Book a call with sirf." aria-hidden="true" data-cal data-lenis-prevent>
+    <button class="cal__close" type="button" aria-label="Close" data-cal-close><span></span><span></span></button>
+    <div class="cal__body" data-cal-body data-cal-stage>
       <p class="cal__loading"><span class="dot"></span>Loading calendar</p>
       <div class="cal__retry">
-        <p>The calendar is taking longer than usual.</p>
-        <button class="cal__retry-btn" type="button" data-cal-retry>Try again</button>
+        <p>The calendar couldn't load here.</p>
+        <a class="cal__retry-btn" href="#contact" data-cal-alt>Write to us instead</a>
       </div>
+      <div class="cal__embed" id="sirf-cal-inline"></div>
     </div>
-    <a class="cal__alt" href="#contact" data-cal-alt>Prefer email? Write to us instead <span aria-hidden="true">→</span></a>
   </div>
 
   <!-- ============ FOOTER ============ -->

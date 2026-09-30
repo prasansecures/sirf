@@ -181,30 +181,58 @@
     form.addEventListener('input', e => e.target.closest('.field')?.classList.remove('is-invalid'));
   }
 
-  /* ---------- Booking pop-up: glass panel with cal.com inside, on the page ---------- */
+  /* ---------- cal.com: one loader, mounted inline wherever it's needed ---------- */
+  const CAL_LINK = 'prasan-singh/sirfyou';
+  const CAL_SCRIPT = 'https://app.cal.com/embed/embed.js';
+  // The calendar's own surfaces are made transparent so our glass shows through.
+  const CAL_GLASS = {
+    'cal-bg': 'transparent',
+    'cal-bg-muted': 'rgba(255,255,255,0.28)',
+    'cal-bg-subtle': 'rgba(255,255,255,0.22)',
+    'cal-bg-emphasis': 'rgba(28,28,28,0.08)',
+    'cal-border': 'rgba(28,28,28,0.10)',
+    'cal-border-subtle': 'rgba(28,28,28,0.06)',
+    'cal-border-booker': 'transparent',
+    'cal-brand': '#1e1e1e',
+  };
+  const mountCal = (ns, host) => {
+    // cal.com's embed snippet (adds its script once, queues calls until it loads)
+    (function (C, A, L) { const p = (a, ar) => { a.q.push(ar); }; const d = C.document; C.Cal = C.Cal || function () { const cal = C.Cal; const ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, CAL_SCRIPT, 'init');
+    const Cal = window.Cal;
+    const stage = host.closest('[data-cal-stage]');
+    Cal('init', ns, { origin: 'https://app.cal.com' });
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+    Cal.ns[ns]('inline', {
+      elementOrSelector: host,
+      calLink: CAL_LINK,
+      config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', theme: 'light' },
+    });
+    Cal.ns[ns]('ui', { theme: 'light', cssVarsPerTheme: { light: CAL_GLASS, dark: CAL_GLASS }, hideEventTypeDetails: true, layout: 'month_view' });
+    const ready = () => stage.classList.add('is-ready');
+    const fail = () => { if (!stage.classList.contains('is-ready')) stage.classList.add('is-failed'); };
+    Cal.ns[ns]('on', { action: 'linkReady', callback: ready });
+    $(`script[src="${CAL_SCRIPT}"]`)?.addEventListener('error', fail);
+    setTimeout(() => ($('iframe', host) ? ready() : fail()), 12000);
+  };
+  // Mount a calendar when the visitor gets within ~900px of it.
+  const mountWhenNear = (ns, host, watch = host) => {
+    const io = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { io.disconnect(); mountCal(ns, host); }
+    }, { rootMargin: '900px 0px' });
+    io.observe(watch);
+  };
+
+  /* ---------- Booking pop-up: cal.com on a liquid-glass sheet, on the page ---------- */
   const cal = $('[data-cal]');
   const calTrigger = $('[data-cal-trigger]');
   if (cal && calTrigger) {
     const root = document.documentElement;
-    const body = $('[data-cal-body]', cal);
     const openLink = $('[data-cal-open]', calTrigger);
     const backdrop = $('[data-cal-backdrop]');
-    let frame = null, slowT = 0, isOpen = false, pinned = false, openT = 0, closeT = 0;
-
-    // Load the booking page into the panel before anyone reaches for it, so it
-    // opens ready. Plain iframe: no third-party script on this page.
-    const load = () => {
-      if (frame) return;
-      body.classList.remove('is-slow', 'is-ready');
-      frame = document.createElement('iframe');
-      frame.title = 'Book a call with sirf.';
-      frame.src = cal.dataset.calSrc;
-      frame.allow = 'payment';
-      frame.addEventListener('load', () => { clearTimeout(slowT); body.classList.add('is-ready'); }, { once: true });
-      body.appendChild(frame);
-      slowT = setTimeout(() => body.classList.add('is-slow'), 15000);
-    };
-    $('[data-cal-retry]', cal).addEventListener('click', () => { frame?.remove(); frame = null; load(); });
+    let isOpen = false, pinned = false, openT = 0, closeT = 0;
+    let loaded = false;
+    const load = () => { if (!loaded) { loaded = true; mountCal('sirfyou', $('#sirf-cal-inline')); } };
     const nearIO = new IntersectionObserver(es => {
       if (es.some(e => e.isIntersecting)) { load(); nearIO.disconnect(); }
     }, { rootMargin: '900px 0px' });
@@ -275,13 +303,22 @@
       open({ pinIt: true, focus: e.detail === 0 });
     });
     // Picking a date moves focus into the calendar iframe: keep it open.
-    addEventListener('blur', () => { if (isOpen && document.activeElement === frame) pin(); });
+    addEventListener('blur', () => { if (isOpen && cal.contains(document.activeElement)) pin(); });
 
     $('[data-cal-close]', cal).addEventListener('click', () => close({ returnFocus: true }));
     backdrop.addEventListener('click', () => close());
     $('[data-cal-alt]', cal).addEventListener('click', () => close());
     addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) close({ returnFocus: true }); });
   }
+
+  /* ---------- Contact: "Book a call" | "Send a brief" ---------- */
+  const contactCal = $('#sirf-cal-contact');
+  if (contactCal) mountWhenNear('sirfcontact', contactCal);
+  const tabs = $$('[data-pane-tab]');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    $$('[role="tab"][data-pane-tab]').forEach(t => t.setAttribute('aria-selected', String(t.dataset.paneTab === tab.dataset.paneTab)));
+    $$('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== tab.dataset.paneTab; });
+  }));
 
   /* ---------- Cursor: the brand dot follows you ---------- */
   const cursor = $('.cursor');
