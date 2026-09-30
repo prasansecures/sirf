@@ -259,7 +259,7 @@
 
       <div class="talk" data-reveal data-cal-trigger>
         <p class="talk__lead">Sounds like you?</p>
-        <a class="talk__btn" href="https://cal.com/prasan-singh/sirfyou" target="_blank" rel="noopener" data-cal-open aria-haspopup="dialog">
+        <a class="talk__btn" href="#contact" data-cal-open aria-haspopup="dialog" aria-controls="cal" aria-expanded="false">
           <span class="talk__label">Let's talk</span>
           <span class="talk__arrow" aria-hidden="true">→</span>
         </a>
@@ -355,6 +355,24 @@
       <span>Focus mode: on</span><span>Clients on the roster: 5 (never a 6th)</span><span>Half-done deliverables shipped: 0</span><span>Times we've said “good enough”: 0</span><span>Replies from actual humans: always</span>
       <span>Focus mode: on</span><span>Clients on the roster: 5 (never a 6th)</span><span>Half-done deliverables shipped: 0</span><span>Times we've said “good enough”: 0</span><span>Replies from actual humans: always</span>
     </div>
+  </div>
+
+  <!-- ============ BOOKING POP-UP (cal.com, frosted glass) ============ -->
+  <div class="cal-backdrop" data-cal-backdrop aria-hidden="true"></div>
+  <div class="cal" id="cal" role="dialog" aria-label="Book a call with sirf." aria-hidden="true" data-cal data-lenis-prevent
+       data-cal-src="https://cal.com/prasan-singh/sirfyou?embed=true&amp;layout=month_view&amp;theme=dark">
+    <div class="cal__head">
+      <p class="cal__title">Let's talk<span class="dot"></span></p>
+      <button class="cal__close" type="button" aria-label="Close" data-cal-close><span></span><span></span></button>
+    </div>
+    <div class="cal__body" data-cal-body>
+      <p class="cal__loading"><span class="dot"></span>Loading calendar</p>
+      <div class="cal__retry">
+        <p>The calendar is taking longer than usual.</p>
+        <button class="cal__retry-btn" type="button" data-cal-retry>Try again</button>
+      </div>
+    </div>
+    <a class="cal__alt" href="#contact" data-cal-alt>Prefer email? Write to us instead <span aria-hidden="true">→</span></a>
   </div>
 
   <!-- ============ FOOTER ============ -->

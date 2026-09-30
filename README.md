@@ -25,7 +25,7 @@ Drop the folder on any static host (Netlify, Vercel, Cloudflare Pages or GitHub 
 
 | What | Where |
 | --- | --- |
-| Booking link (`prasan-singh/sirfyou`) | `CAL_LINK` in `assets/js/main.js`, plus the fallback `href` on `.talk__btn` in `index.html` |
+| Booking link (`prasan-singh/sirfyou`) | `data-cal-src` on `#cal` in `index.html` |
 | Contact email (currently `hello@sirf.website`) | `index.html` (3 places), `assets/js/main.js` (mailto in the form handler) |
 | Instagram / LinkedIn URLs | footer in `index.html` |
 | Form backend (optional) | the form opens the visitor's email app. To collect submissions instead, point it at Formspree, Basin or a serverless function. |
@@ -50,7 +50,7 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 4. **Who we work with:** "Five clients. *Never a sixth.*" plus four client types. Edit the types in `index.html` (`.who__grid`).
 5. **What we do:** six services. Only the one in the centre of the screen is in focus; the others blur.
 6. **What's in the name?:** सिर्फ़ / صرف, "Sirf means *only*."
-7. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs. Below that, "Sounds like you? Let's talk" sits on a soft red glow. Hovering over it (or clicking/tapping it) opens cal.com's own booking pop-up for the `sirfyou` event. cal.com's script loads, and pre-renders the pop-up, only when a visitor scrolls near this spot. If cal.com can't load, the link opens the booking page in a new tab.
+7. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one persona line at a time. It's followed by "…and probably won't if you" with animated strike-throughs. Below that, "Sounds like you? Let's talk" sits on a soft red glow. Hovering over it opens a frosted-glass pop-up on the page with the cal.com booking calendar inside; clicking, tapping or picking a date keeps it open, and ×, Esc or a click outside closes it. On phones it slides up as a sheet. The calendar is loaded into the pop-up in the background once a visitor scrolls near this spot, so it opens ready. Nothing ever redirects or opens a new tab.
 8. **Method:** Listen, Commit, Craft, Deliver; the time promise ("sirf 6 hours of your month"); then "Numbers we'll put in writing" (5 clients max, 1 thing in focus per client, 0 handoffs, 100% senior eyes).
 9. **Contact:** "Tell us the one thing." brief form.
 10. **Ticker and footer:** a "Focus mode: on · Half-done deliverables shipped: 0…" ticker, then a giant wordmark with a red glow.

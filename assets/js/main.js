@@ -13,7 +13,7 @@
     requestAnimationFrame(raf);
     document.addEventListener('click', e => {
       const a = e.target.closest('a[href^="#"]');
-      if (!a || a.classList.contains('skip')) return;
+      if (!a || e.defaultPrevented || a.classList.contains('skip')) return;
       const hash = a.getAttribute('href');
       const target = hash === '#top' ? 0 : document.querySelector(hash);
       if (target === null) return;
@@ -181,83 +181,106 @@
     form.addEventListener('input', e => e.target.closest('.field')?.classList.remove('is-invalid'));
   }
 
-  /* ---------- Booking: cal.com's pop-up, opened on hover ---------- */
+  /* ---------- Booking pop-up: glass panel with cal.com inside, on the page ---------- */
+  const cal = $('[data-cal]');
   const calTrigger = $('[data-cal-trigger]');
-  if (calTrigger) {
+  if (cal && calTrigger) {
     const root = document.documentElement;
-    const link = $('[data-cal-open]', calTrigger);
-    const CAL_LINK = 'prasan-singh/sirfyou';
-    const CAL_CONFIG = { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' };
-    let state = 'idle'; // idle → loading → ready | failed
-    let openT = 0, lastOpen = 0, hovering = false, queued = false;
+    const body = $('[data-cal-body]', cal);
+    const openLink = $('[data-cal-open]', calTrigger);
+    const backdrop = $('[data-cal-backdrop]');
+    let frame = null, slowT = 0, isOpen = false, pinned = false, openT = 0, closeT = 0;
 
-    // cal.com's element-click embed snippet, run only when the visitor gets
-    // close to "Let's talk", then the pop-up is pre-rendered so hover is instant.
+    // Load the booking page into the panel before anyone reaches for it, so it
+    // opens ready. Plain iframe: no third-party script on this page.
     const load = () => {
-      if (state !== 'idle') return;
-      state = 'loading';
-      (function (C, A, L) { const p = (a, ar) => { a.q.push(ar); }; const d = C.document; C.Cal = C.Cal || function () { const cal = C.Cal; const ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
-      const Cal = window.Cal;
-      Cal('init', 'sirfyou', { origin: 'https://app.cal.com' });
-      Cal.config = Cal.config || {};
-      Cal.config.forwardQueryParams = true;
-      Cal.ns.sirfyou('ui', { cssVarsPerTheme: { light: { 'cal-brand': '#1e1e1e' }, dark: { 'cal-brand': '#f4f2ee' } }, hideEventTypeDetails: true, layout: 'month_view' });
-      Cal.ns.sirfyou('preload', { calLink: CAL_LINK, type: 'modal' });
-      const script = $('script[src="https://app.cal.com/embed/embed.js"]');
-      script?.addEventListener('load', () => {
-        state = 'ready';
-        // Hovered while cal.com was still loading: open now if they're still here.
-        if (queued && hovering) openCal();
-        queued = false;
-      });
-      script?.addEventListener('error', () => { state = 'failed'; });
+      if (frame) return;
+      body.classList.remove('is-slow', 'is-ready');
+      frame = document.createElement('iframe');
+      frame.title = 'Book a call with sirf.';
+      frame.src = cal.dataset.calSrc;
+      frame.allow = 'payment';
+      frame.addEventListener('load', () => { clearTimeout(slowT); body.classList.add('is-ready'); }, { once: true });
+      body.appendChild(frame);
+      slowT = setTimeout(() => body.classList.add('is-slow'), 15000);
     };
+    $('[data-cal-retry]', cal).addEventListener('click', () => { frame?.remove(); frame = null; load(); });
     const nearIO = new IntersectionObserver(es => {
       if (es.some(e => e.isIntersecting)) { load(); nearIO.disconnect(); }
     }, { rootMargin: '900px 0px' });
     nearIO.observe(calTrigger);
 
-    const modalBox = () => $$('cal-modal-box').find(m => !['closed', 'prerendering'].includes(m.getAttribute('state')));
-    const isOpen = () => !!modalBox();
-
-    // Keep the page still and hide the cursor dot while cal.com's pop-up is up.
-    let wasOpen = false;
-    const sync = () => {
-      const open = isOpen();
-      if (open === wasOpen) return;
-      wasOpen = open;
-      root.classList.toggle('cal-open', open);
-      if (lenis) open ? lenis.stop() : lenis.start();
+    const keep = () => { clearTimeout(closeT); closeT = 0; };
+    const within = (el, e) => {
+      const r = el.getBoundingClientRect();
+      return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
     };
-    new MutationObserver(sync).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['state'] });
+    const pin = () => { pinned = true; keep(); root.classList.add('cal-pinned'); };
 
-    const openCal = () => {
-      if (state !== 'ready' || isOpen() || Date.now() - lastOpen < 900) return false;
-      lastOpen = Date.now();
-      window.Cal.ns.sirfyou('modal', { calLink: CAL_LINK, config: CAL_CONFIG });
-      return true;
+    const open = ({ pinIt = false, focus = false } = {}) => {
+      keep();
+      load();
+      if (pinIt) pin();
+      if (isOpen) return;
+      // Grow out of the "Let's talk" glow: transform origin = its centre.
+      const r = calTrigger.getBoundingClientRect();
+      const c = cal.getBoundingClientRect();
+      cal.style.setProperty('--ox', `${r.left + r.width / 2 - c.left}px`);
+      cal.style.setProperty('--oy', `${r.top + r.height / 2 - c.top}px`);
+      isOpen = true;
+      root.classList.add('cal-open');
+      cal.setAttribute('aria-hidden', 'false');
+      openLink.setAttribute('aria-expanded', 'true');
+      if (lenis) lenis.stop();
+      if (focus) setTimeout(() => $('[data-cal-close]', cal).focus({ preventScroll: true }), 60);
+    };
+    const close = ({ returnFocus = false } = {}) => {
+      clearTimeout(openT); keep();
+      if (!isOpen) return;
+      isOpen = false; pinned = false;
+      root.classList.remove('cal-open', 'cal-pinned');
+      cal.setAttribute('aria-hidden', 'true');
+      openLink.setAttribute('aria-expanded', 'false');
+      calTrigger.classList.remove('is-hot');
+      if (lenis) lenis.start();
+      if (returnFocus) openLink.focus({ preventScroll: true });
+    };
+    const closeSoon = () => {
+      clearTimeout(openT);
+      if (!pinned && !closeT) closeT = setTimeout(() => { closeT = 0; close(); }, 450);
     };
 
-    // Hover (mouse only) with a short intent delay, so scrolling past doesn't pop it.
+    // Hover (mouse): peek open after a short intent delay.
     calTrigger.addEventListener('pointerenter', e => {
       if (e.pointerType !== 'mouse') return;
-      hovering = true;
       calTrigger.classList.add('is-hot');
-      openT = setTimeout(() => { if (!openCal() && state === 'loading') queued = true; }, 220);
+      keep();
+      openT = setTimeout(() => open(), 180);
     });
-    calTrigger.addEventListener('pointerleave', () => {
-      hovering = false;
+    calTrigger.addEventListener('pointerleave', e => {
+      if (e.pointerType !== 'mouse') return;
       clearTimeout(openT);
-      calTrigger.classList.remove('is-hot');
+      if (!isOpen) calTrigger.classList.remove('is-hot');
     });
-    // Click / tap / keyboard also open it. If cal.com never loaded, the link
-    // just opens the booking page in a new tab.
-    link.addEventListener('click', e => {
-      if (state !== 'ready') return;
+    // While peeking, stay open while the pointer is over the panel or the trigger
+    // (position-based: moving into the calendar iframe looks like "leaving").
+    document.addEventListener('pointermove', e => {
+      if (!isOpen || pinned || e.pointerType !== 'mouse') return;
+      if (within(cal, e) || within(calTrigger, e)) keep(); else closeSoon();
+    }, { passive: true });
+
+    // Click / tap / keyboard: open and keep it open. Never leaves the page.
+    openLink.addEventListener('click', e => {
       e.preventDefault();
-      clearTimeout(openT);
-      if (!isOpen()) { lastOpen = 0; openCal(); }
+      open({ pinIt: true, focus: e.detail === 0 });
     });
+    // Picking a date moves focus into the calendar iframe: keep it open.
+    addEventListener('blur', () => { if (isOpen && document.activeElement === frame) pin(); });
+
+    $('[data-cal-close]', cal).addEventListener('click', () => close({ returnFocus: true }));
+    backdrop.addEventListener('click', () => close());
+    $('[data-cal-alt]', cal).addEventListener('click', () => close());
+    addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) close({ returnFocus: true }); });
   }
 
   /* ---------- Cursor: the brand dot follows you ---------- */
