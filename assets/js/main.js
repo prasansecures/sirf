@@ -76,8 +76,7 @@
   const words = $('[data-words]');
   if (words) {
     const text = words.textContent.trim().replace(/\s+/g, ' ');
-    words.setAttribute('aria-label', text);
-    words.innerHTML = text.split(' ').map(w => `<span class="w" aria-hidden="true">${w}</span>`).join(' ');
+    words.innerHTML = text.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
     const spans = $$('.w', words);
     // mark the "one thing at a time." and "full attention." phrases
     spans.forEach((s, i) => {
