@@ -37,6 +37,10 @@
   --intro: 0s;
 }
 .js:not(.seen) { --intro: .55s; }
+/* No intro loader on phones and small tablets: content paints straight away */
+@media (max-width: 860px) {
+  :root, .js:not(.seen) { --intro: 0s; }
+}
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -913,6 +917,7 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
   pointer-events: none;
   animation: loader-out .65s .5s var(--ease-io) forwards;
 }
+@media (max-width: 860px) { .js:not(.seen) .loader { display: none; } }
 .loader__mark {
   display: inline-flex; align-items: baseline;
   font-size: clamp(4rem, 3rem + 10vw, 11rem); font-weight: 800; letter-spacing: -.04em; line-height: 1;
