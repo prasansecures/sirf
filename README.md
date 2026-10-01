@@ -39,6 +39,7 @@ After that, every push to the production branch redeploys the site automatically
 - **Head:** title, a 157-character description, robots directive, Open Graph and Twitter cards with image size and alt text.
 - **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ lives on its own page, `faq.html` (served at `/faq`), linked subtly from the contact section and the footer. Its `FAQPage` data mirrors the visible answers word for word, which Google requires: edit both together.
 - **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/` and `/faq`. `llms.txt` is a plain-text summary for AI assistants.
+- **Performance:** fonts are self-hosted from `assets/fonts/` (same files and subsets Google Fonts serves), with the two above-the-fold fonts preloaded and cached for a year. Only the tiny Hindi/Urdu subsets still come from Google, loaded without blocking. The first-visit intro is kept short so the main content shows quickly. PNGs are palette-compressed.
 - **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
 
 **After deploying:**
