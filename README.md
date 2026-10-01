@@ -33,6 +33,21 @@ After that, every push to the production branch redeploys the site automatically
 
 **Analytics:** Vercel Web Analytics and Speed Insights are wired in `index.html` and only load on `sirf.website` or `*.vercel.app`. Turn them on in the Vercel project (the **Analytics** and **Speed Insights** tabs) to start collecting.
 
+## SEO & answer engines (AEO)
+
+- **One canonical address:** `https://www.sirf.website/`. The bare domain redirects there. If you make the bare domain primary in Vercel instead, update the canonical, `og:url`, structured data, `robots.txt`, `sitemap.xml` and `llms.txt` to match.
+- **Head:** title, a 157-character description, robots directive, Open Graph and Twitter cards with image size and alt text.
+- **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ data mirrors the visible **"Asked. Answered."** section word for word, which Google requires. If you edit one, edit the other.
+- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists the page. `llms.txt` is a plain-text summary for AI assistants.
+- **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
+
+**After deploying:**
+1. Open [Google Search Console](https://search.google.com/search-console), add a **Domain** property for `sirf.website`, and verify it with the DNS TXT record it gives you (added where you manage DNS).
+2. Submit `https://www.sirf.website/sitemap.xml` under **Sitemaps**.
+3. Use **URL Inspection** on `https://www.sirf.website/` and click **Request indexing**.
+4. Optional: do the same in [Bing Webmaster Tools](https://www.bing.com/webmasters), which can import from Search Console. Bing also feeds ChatGPT search.
+5. Check the structured data at [Google's Rich Results Test](https://search.google.com/test/rich-results).
+
 ## Before launch: things to fill in
 
 | What | Where |

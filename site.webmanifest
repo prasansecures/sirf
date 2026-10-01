@@ -1,0 +1,13 @@
+{
+  "name": "sirf. | Media & Content House",
+  "short_name": "sirf.",
+  "description": "A media and content house. One thing at a time.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f4f2ee",
+  "theme_color": "#1c1c1c",
+  "icons": [
+    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

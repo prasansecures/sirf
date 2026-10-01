@@ -166,6 +166,12 @@
     step();
   }
 
+  /* ---------- FAQ: one answer open at a time ---------- */
+  const faqs = $$('[data-faq] details');
+  faqs.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) faqs.forEach(o => { if (o !== d) o.open = false; });
+  }));
+
   /* ---------- Contact: compose an email (no backend needed) ---------- */
   const form = $('[data-contact]');
   if (form) {
