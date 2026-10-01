@@ -82,6 +82,6 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 9. **Contact:** "Tell us the one thing." with a **Book a call | Send a brief** switch: the cal.com calendar on light glass (default), or the brief form.
 10. **Ticker and footer:** a "Focus mode: on · Half-done deliverables shipped: 0…" ticker, then a giant wordmark with a red glow.
 
-**Liquid glass details (iOS-style):** the nav lifts into a floating glass capsule once you scroll; "Focus mode: on", the scroll cue, service tags, form chips, Fit check label/counter/slider and step numbers sit on glass; buttons press in slightly when tapped. The shared glass values are the `--glass-*` variables in `style.css`.
+**Liquid glass details (iOS-style):** the nav lifts into a floating glass capsule once you scroll; the scroll cue, service tags, form chips, Fit check label/counter/slider and step numbers sit on glass; buttons press in slightly when tapped. The shared glass values are the `--glass-*` variables in `style.css`.
 
 Smooth scrolling uses [Lenis](https://github.com/darkroomengineering/lenis) from jsDelivr; if it fails to load, the page falls back to native scrolling. The Devanagari and Urdu fonts load without blocking the page and are subset to just the glyphs used. Motion respects `prefers-reduced-motion`. Without JavaScript, every section falls back to static content.
