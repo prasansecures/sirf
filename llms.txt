@@ -31,6 +31,9 @@ Commitments: 5 clients at a time (never a sixth); 1 thing in focus per client; 0
 
 ## FAQ
 
+Full answers: https://www.sirf.website/faq
+
+
 - What is sirf.? A media and content house for founders and brands, working with five clients at a time.
 - What does "sirf" mean? "Only" in Hindi (सिर्फ़) and Urdu (صرف).
 - How do I start? Book a call at https://cal.com/prasan-singh/sirfyou or email sirfconvos@gmail.com.

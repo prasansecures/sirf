@@ -37,8 +37,8 @@ After that, every push to the production branch redeploys the site automatically
 
 - **One canonical address:** `https://www.sirf.website/`. The bare domain redirects there. If you make the bare domain primary in Vercel instead, update the canonical, `og:url`, structured data, `robots.txt`, `sitemap.xml` and `llms.txt` to match.
 - **Head:** title, a 157-character description, robots directive, Open Graph and Twitter cards with image size and alt text.
-- **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ data mirrors the visible **"Asked. Answered."** section word for word, which Google requires. If you edit one, edit the other.
-- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists the page. `llms.txt` is a plain-text summary for AI assistants.
+- **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ lives on its own page, `faq.html` (served at `/faq`), linked subtly from the contact section and the footer. Its `FAQPage` data mirrors the visible answers word for word, which Google requires: edit both together.
+- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/` and `/faq`. `llms.txt` is a plain-text summary for AI assistants.
 - **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
 
 **After deploying:**
