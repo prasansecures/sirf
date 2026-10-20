@@ -71,7 +71,7 @@ Track progress in Search Console under **Links**. Five to ten relevant referring
 | Booking link (`prasan-singh/sirfyou`) | `CAL_LINK` in `assets/js/main.js` (used by the pop-up and the contact section) |
 | Contact email (currently `sirfconvos@gmail.com`) | `index.html` (3 places), `assets/js/main.js` (mailto in the form handler) |
 | LinkedIn (currently the founder, `linkedin.com/in/prasan-singh`); add Instagram back when ready | footer in `index.html` |
-| Careers apply links: currently email (`mailto:`) fallbacks. Replace with the Google Form links (general + one pre-filled per role) | `careers.html`, every `a[data-apply]` (4 links) |
+| Careers apply links: currently email (`mailto:`) fallbacks. Replace with the Google Form links (general + one pre-filled per role) | `careers.html`, every `a[data-apply]` (6 links) |
 | Form backend (optional) | the form opens the visitor's email app. To collect submissions instead, point it at Formspree, Basin or a serverless function. |
 
 ## Brand
