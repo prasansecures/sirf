@@ -38,7 +38,7 @@ After that, every push to the production branch redeploys the site automatically
 - **One canonical address:** `https://www.sirf.website/`. The bare domain redirects there. If you make the bare domain primary in Vercel instead, update the canonical, `og:url`, structured data, `robots.txt`, `sitemap.xml` and `llms.txt` to match.
 - **Head:** title, a 152-character description (141 on `/faq`), canonical, robots directive, Open Graph and Twitter cards with image size and alt text.
 - **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ lives on its own page, `faq.html` (served at `/faq`), linked subtly from the contact section and the footer. Its `FAQPage` data mirrors the visible answers word for word, which Google requires: edit both together.
-- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/` and `/faq`. `llms.txt` is a plain-text summary for AI assistants.
+- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/`, `/faq` and `/careers`. `llms.txt` is a plain-text summary for AI assistants.
 - **Performance:** fonts are self-hosted from `assets/fonts/` (same files and subsets Google Fonts serves), with the two above-the-fold fonts preloaded and cached for a year. Only the tiny Hindi/Urdu subsets still come from Google, loaded without blocking. The first-visit intro is kept short so the main content shows quickly. PNGs are palette-compressed.
 - **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
 
@@ -71,6 +71,7 @@ Track progress in Search Console under **Links**. Five to ten relevant referring
 | Booking link (`prasan-singh/sirfyou`) | `CAL_LINK` in `assets/js/main.js` (used by the pop-up and the contact section) |
 | Contact email (currently `sirfconvos@gmail.com`) | `index.html` (3 places), `assets/js/main.js` (mailto in the form handler) |
 | LinkedIn (currently the founder, `linkedin.com/in/prasan-singh`); add Instagram back when ready | footer in `index.html` |
+| Careers apply links: currently email (`mailto:`) fallbacks. Replace with the Google Form links (general + one pre-filled per role) | `careers.html`, every `a[data-apply]` (4 links) |
 | Form backend (optional) | the form opens the visitor's email app. To collect submissions instead, point it at Formspree, Basin or a serverless function. |
 
 ## Brand

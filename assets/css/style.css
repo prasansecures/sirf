@@ -728,6 +728,59 @@ html:not(.js) .strike-over > span { background-size: 100% .09em; }
   display: grid; justify-items: start; gap: 18px;
 }
 
+/* ---------- Careers ---------- */
+.careers-hero {
+  max-width: var(--max); margin: 0 auto;
+  padding: calc(var(--nav-h) + clamp(60px, 9vw, 130px)) var(--gutter) clamp(40px, 6vw, 90px);
+  display: grid; justify-items: start; gap: clamp(20px, 2.4vw, 30px);
+}
+.careers-hero__title { font-size: clamp(3rem, 1.6rem + 6vw, 7.5rem); font-weight: 800; line-height: .92; letter-spacing: -.045em; }
+.careers-hero__title em { color: var(--red); font-size: 1.06em; }
+.careers-hero__lede { max-width: 48ch; color: var(--muted); font-size: clamp(1.1rem, .98rem + .5vw, 1.45rem); line-height: 1.4; }
+.careers-hero__meta, .role__tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.careers-hero__meta li, .role__tags li {
+  padding: 8px 16px; border-radius: 999px; font-size: .9rem; font-weight: 600;
+  background: var(--glass-fill); box-shadow: var(--glass-rim);
+}
+.roles {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(40px, 6vw, 90px) var(--gutter) clamp(40px, 6vw, 80px);
+}
+.role {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 96px);
+  border-top: 1.5px solid var(--ink);
+  padding: clamp(28px, 3.4vw, 48px) 0 clamp(56px, 7vw, 110px);
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+.role__head { display: grid; justify-items: start; align-content: start; gap: 18px; position: sticky; top: calc(var(--nav-h) + 32px); }
+.role__num { font-size: .85rem; font-weight: 600; letter-spacing: .08em; color: var(--red); }
+.role__title { font-size: clamp(2.2rem, 1.3rem + 3vw, 4.4rem); font-weight: 800; line-height: .95; letter-spacing: -.045em; }
+.role__head .btn { margin-top: 8px; }
+.role__lede { font-size: clamp(1.15rem, 1rem + .6vw, 1.55rem); line-height: 1.35; letter-spacing: -.01em; max-width: 40ch; }
+.role__body h4 {
+  margin-top: clamp(30px, 3.4vw, 44px); padding-bottom: 12px; border-bottom: 1px solid var(--line);
+  font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.role__body ul li {
+  position: relative; padding: 14px 0 14px 26px; border-bottom: 1px solid var(--line);
+  color: var(--muted); font-size: clamp(1rem, .95rem + .25vw, 1.15rem); line-height: 1.45;
+}
+.role__body ul li::before { content: ""; position: absolute; left: 2px; top: 1.15em; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.careers-why { padding-bottom: clamp(70px, 9vw, 140px); }
+.careers-why .pledges { margin-top: 0; }
+.careers-why .pledges dd { max-width: 24ch; }
+.careers-apply { border-top: 1px solid var(--line); padding-top: clamp(100px, 13vw, 200px); }
+.careers-apply__title { font-size: clamp(3rem, 1.4rem + 6.4vw, 8rem); font-weight: 800; line-height: .9; letter-spacing: -.055em; }
+.careers-apply__title em { color: var(--red); font-size: 1.06em; }
+.careers-apply__btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 18px; }
+@media (max-width: 860px) {
+  .role { grid-template-columns: 1fr; }
+  .role__head { position: static; }
+}
+@media (max-width: 480px) {
+  .careers-apply__btns { flex-direction: column; align-items: stretch; width: 100%; }
+}
+
 /* ---------- Contact ---------- */
 .contact {
   border-top: 1px solid var(--line);
