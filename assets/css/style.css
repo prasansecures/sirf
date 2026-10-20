@@ -784,33 +784,49 @@ html:not(.js) .strike-over > span { background-size: 100% .09em; }
 .perks-hero__title em { color: var(--red); font-size: 1.06em; }
 .perks-hero__lede { max-width: 46ch; color: var(--muted); font-size: clamp(1.1rem, .98rem + .5vw, 1.45rem); line-height: 1.4; }
 
-.member-card {
-  justify-self: center; width: min(100%, 420px); aspect-ratio: 1.586;
-  display: grid; grid-template-rows: auto 1fr auto; padding: clamp(20px, 2.4vw, 30px);
-  border-radius: 24px; color: var(--paper);
-  background:
-    radial-gradient(120% 90% at 100% 100%, rgba(179, 38, 26, .55), transparent 60%),
-    radial-gradient(80% 60% at 0% 0%, rgba(255, 255, 255, .10), transparent 70%),
-    var(--ink);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), inset 0 0 0 1px rgba(255, 255, 255, .06), 0 30px 60px -28px rgba(28, 28, 28, .6);
-  transform: rotate(-4deg);
-  transition: transform .8s var(--ease-out);
+/* The asterisk: the fine print of the club. Spins and glows on hover. */
+.perks-star {
+  justify-self: center; position: relative; display: grid; justify-items: center; gap: 18px;
+  color: var(--red);
 }
-.member-card:hover { transform: rotate(0deg) translateY(-6px); }
-.member-card__top, .member-card__bottom { display: flex; justify-content: space-between; align-items: end; gap: 16px; }
-.member-card__top { align-items: center; }
-.member-card__mark { font-size: 1.7rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
-.member-card__label { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-light); }
-.member-card__chip {
-  align-self: center; width: 46px; height: 34px; border-radius: 8px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, .34), rgba(255, 255, 255, .08));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
+.perks-star svg {
+  width: clamp(150px, 22vw, 330px); height: auto; fill: currentColor; overflow: visible;
+  filter: drop-shadow(0 0 0 rgba(217, 64, 46, 0));
+  transition: transform 1.4s var(--ease-out), filter .8s var(--ease), color .6s;
 }
-.member-card__bottom > span:first-child { display: grid; gap: 4px; font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
-.member-card__bottom small { font-size: .68rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-light); }
-.member-card__seats { display: flex; gap: 6px; }
-.member-card__seats i { width: 9px; height: 9px; border-radius: 50%; background: rgba(244, 242, 238, .28); }
-.member-card__seats i:first-child { background: var(--red-hot); box-shadow: 0 0 10px 1px rgba(179, 38, 26, .7); }
+.perks-star g { transform-origin: 0 0; animation: star-turn 60s linear infinite; }
+@keyframes star-turn { to { transform: rotate(360deg); } }
+.perks-star__note {
+  font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+  opacity: .0; transform: translateY(-8px); transition: opacity .5s var(--ease), transform .7s var(--ease-out), color .4s;
+}
+.perks-star:hover svg, .perks-star:focus-visible svg {
+  transform: rotate(150deg) scale(1.08);
+  filter: drop-shadow(0 0 28px rgba(217, 64, 46, .55));
+}
+.perks-star:hover .perks-star__note, .perks-star:focus-visible .perks-star__note { opacity: 1; transform: none; color: var(--paper); }
+.perks-star:active svg { transform: rotate(210deg) scale(.96); transition-duration: .5s; }
+@media (hover: none) { .perks-star__note { opacity: 1; transform: none; } }
+.careers-apply__title sup { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--red); font-size: .5em; vertical-align: super; line-height: 0; margin-left: .04em; }
+
+/* Perks page runs dark: black, paper type, brighter red for contrast on black */
+html:has(body.page-dark) { background: var(--black); }
+.page-dark {
+  --red: #d9402e;
+  --muted: var(--muted-light);
+  --line: var(--line-light);
+  --glass-fill: var(--glass-fill-dark);
+  --glass-rim: var(--glass-rim-dark);
+  background: var(--black); color: var(--paper);
+}
+.page-dark ::selection { background: var(--red); color: var(--paper); }
+.page-dark .nav.is-scrolled { background: rgba(28, 28, 28, .55); }
+.page-dark .btn { background: var(--paper); color: var(--black); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 10px 30px -12px rgba(217, 64, 46, .45); }
+.page-dark .btn:hover { color: var(--paper); }
+.page-dark .perk-group { border-top-color: rgba(244, 242, 238, .55); }
+.page-dark .ticker { border-top-color: rgba(244, 242, 238, .12); }
+.page-dark .footer { background: radial-gradient(70% 55% at 50% 115%, rgba(179, 38, 26, .5), transparent 70%), var(--black); }
+.page-dark .careers-apply { border-top-color: var(--line-light); }
 
 .perks {
   max-width: var(--max); margin: 0 auto;
@@ -843,7 +859,8 @@ html:not(.js) .strike-over > span { background-size: 100% .09em; }
 .perks-cta__lede { max-width: 52ch; color: var(--muted); font-size: clamp(1.05rem, .98rem + .35vw, 1.3rem); line-height: 1.45; }
 @media (max-width: 960px) {
   .perks-hero { grid-template-columns: 1fr; }
-  .member-card { justify-self: start; width: min(100%, 380px); }
+  .perks-star { justify-self: start; justify-items: start; }
+  .perks-star svg { width: clamp(110px, 32vw, 200px); }
 }
 @media (max-width: 860px) {
   .perk-group { grid-template-columns: 1fr; }
