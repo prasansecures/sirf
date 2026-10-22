@@ -757,7 +757,7 @@ html:not(.js) .strike-over > span { background-size: 100% .09em; }
 .role__title { font-size: clamp(2.2rem, 1.3rem + 3vw, 4.4rem); font-weight: 800; line-height: .95; letter-spacing: -.045em; }
 .role__head .btn { margin-top: 8px; }
 .role__lede { font-size: clamp(1.15rem, 1rem + .6vw, 1.55rem); line-height: 1.35; letter-spacing: -.01em; max-width: 40ch; }
-.role__body h4 {
+.role__body h4, .role__body h3 {
   margin-top: clamp(30px, 3.4vw, 44px); padding-bottom: 12px; border-bottom: 1px solid var(--line);
   font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
 }
@@ -827,6 +827,18 @@ html:has(body.page-dark) { background: var(--black); }
 .page-dark .ticker { border-top-color: rgba(244, 242, 238, .12); }
 .page-dark .footer { background: radial-gradient(70% 55% at 50% 115%, rgba(179, 38, 26, .5), transparent 70%), var(--black); }
 .page-dark .careers-apply { border-top-color: var(--line-light); }
+.page-dark .faq__list, .page-dark .steps, .page-dark .role { border-top-color: rgba(244, 242, 238, .55); }
+.page-dark .faq__item[open] summary { color: var(--paper); }
+.page-dark .step + .step::before { background: linear-gradient(180deg, transparent, rgba(244, 242, 238, .16) 25%, rgba(244, 242, 238, .16) 75%, transparent); }
+
+/* ---------- Devcon side events ---------- */
+.dv-hero .careers-apply__btns { margin-top: 6px; }
+.dv-film { padding-top: 0; }
+.dv-film .role__title em { color: var(--red); font-size: 1.04em; }
+.dv-film .role { border-bottom: 0; }
+.page-dark .btn.dv-ghost { background: transparent; color: var(--paper); box-shadow: inset 0 0 0 1.5px rgba(244, 242, 238, .35); }
+.page-dark .btn.dv-ghost:hover { box-shadow: inset 0 0 0 1.5px transparent; }
+.dv-note { margin-top: 18px; max-width: 60ch; font-size: .85rem; color: var(--muted); }
 
 .perks {
   max-width: var(--max); margin: 0 auto;

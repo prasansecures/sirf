@@ -5,6 +5,7 @@
 Website: https://www.sirf.website/
 FAQ: https://www.sirf.website/faq
 Client perks: https://www.sirf.website/perks
+Devcon side events (Mumbai, 3 to 6 November 2026): https://www.sirf.website/devcon
 Careers: https://www.sirf.website/careers (hiring a content strategist, a communication designer and a video editor, in-house or contract)
 Contact: sirfconvos@gmail.com
 Book a 30-minute call: https://cal.com/prasan-singh/sirfyou
@@ -50,6 +51,10 @@ sirf. handles branding and brand identity: visual language, tone of voice and ar
 - One point of contact from start to finish; no handoffs to people the client hasn't met.
 - Senior people on every deliverable.
 - About six hours of the client's time per month, with regular check-ins with the account manager and content feedback three times a week.
+
+## Devcon side events
+
+For people hosting side events during Devcon week in Mumbai (3 to 6 November 2026), sirf. handles media and production: event identity and teasers, a photo and video crew, multi-camera recording of talks with clean audio, same-night selects, short clips, a recap film, captioned talk uploads, and a personal brand film for the organiser. sirf. is independent and not affiliated with Devcon or the Ethereum Foundation. Details: https://www.sirf.website/devcon
 
 ## Client perks (the inner circle)
 
