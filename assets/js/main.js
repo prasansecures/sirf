@@ -266,13 +266,13 @@
     };
     const pin = () => { pinned = true; keep(); root.classList.add('cal-pinned'); };
 
-    const open = ({ pinIt = false, focus = false } = {}) => {
+    const open = ({ pinIt = false, focus = false, from = calTrigger } = {}) => {
       keep();
       load();
       if (pinIt) pin();
       if (isOpen) return;
-      // Grow out of the "Let's talk" glow: transform origin = its centre.
-      const r = calTrigger.getBoundingClientRect();
+      // Grow out of whatever opened it (the "Let's talk" glow by default): transform origin = its centre.
+      const r = from.getBoundingClientRect();
       const c = cal.getBoundingClientRect();
       cal.style.setProperty('--ox', `${r.left + r.width / 2 - c.left}px`);
       cal.style.setProperty('--oy', `${r.top + r.height / 2 - c.top}px`);
@@ -323,6 +323,11 @@
       e.preventDefault();
       open({ pinIt: true, focus: e.detail === 0 });
     });
+    // Other "Book a call" buttons on the page open the same sheet on click.
+    $$('[data-cal-pop]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      open({ pinIt: true, focus: e.detail === 0, from: a });
+    }));
     // Picking a date moves focus into the calendar iframe: keep it open.
     addEventListener('blur', () => { if (isOpen && cal.contains(document.activeElement)) pin(); });
 

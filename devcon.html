@@ -176,7 +176,7 @@
       <a href="/faq">FAQ</a>
     </nav>
     <div class="nav__right">
-      <a class="btn btn--sm" href="#book">Book your event</a>
+      <a class="btn btn--sm" href="https://cal.com/prasan-singh/sirfyou" data-cal-pop aria-haspopup="dialog" aria-controls="cal">Book a call</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn>
         <span></span><span></span><span class="sr">Menu</span>
       </button>
@@ -188,14 +188,15 @@
       <a href="#film">Organiser film</a>
       <a href="#questions">Questions</a>
       <a href="/">sirf. home</a>
-      <a href="#book">Book your event<span class="dot"></span></a>
+      <a href="https://t.me/prasansinghh" target="_blank" rel="noopener">Telegram</a>
+      <a href="#book">Book a call<span class="dot"></span></a>
     </nav>
   </div>
 
   <main id="main">
     <!-- ============ INTRO ============ -->
     <section class="careers-hero dv-hero" aria-labelledby="dv-title">
-      <p class="eyebrow">Devcon week · Mumbai · 3 to 6 November</p>
+      <p class="eyebrow">Devcon week · Mumbai · 28 October to 6 November</p>
       <h1 class="careers-hero__title" id="dv-title">Your side event, <em>shot like the main stage.</em></h1>
       <p class="careers-hero__lede">Devcon is coming to Mumbai, and every side event will be fighting for the same feeds. We handle the media and production for your night, from the first teaser to the recap film, and make a personal brand film for you, the organiser.</p>
       <ul class="careers-hero__meta">
@@ -205,7 +206,8 @@
         <li>Limited events</li>
       </ul>
       <div class="careers-apply__btns">
-        <a class="btn btn--lg" href="#book">Book your event <span class="dot"></span></a>
+        <a class="btn btn--lg" href="https://cal.com/prasan-singh/sirfyou" data-cal-pop aria-haspopup="dialog" aria-controls="cal">Book a call <span class="dot"></span></a>
+        <a class="btn btn--lg dv-ghost" href="https://t.me/prasansinghh" target="_blank" rel="noopener"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.4 3.6 2.9 10.8c-1.3.5-1.2 1.3-.2 1.6l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.6ZM8.6 13.6l9.6-6.1c.4-.3.9-.1.5.3l-7.9 7.2-.3 3.3-1.9-4.7Z"/></svg>Reach out on Telegram</a>
       </div>
     </section>
 
@@ -340,16 +342,36 @@
     </section>
 
     <!-- ============ BOOK ============ -->
-    <section class="faq-next careers-apply" id="book" aria-labelledby="book-title">
+    <section class="faq-next careers-apply dv-book" id="book" aria-labelledby="book-title">
       <h2 class="careers-apply__title" id="book-title">Hosting during <em>Devcon?</em></h2>
       <p class="perks-cta__lede">We're taking on a limited number of side events for Devcon week, so each one gets a full crew. Tell us the date, the venue and the one thing you want people to remember.</p>
-      <div class="careers-apply__btns">
-        <a class="btn btn--lg" href="/#contact">Book a call <span class="dot"></span></a>
-        <a class="btn btn--lg dv-ghost" href="mailto:sirfconvos@gmail.com?subject=Devcon%20side%20event">Email us the details</a>
+      <div class="talk" data-cal-trigger>
+        <p class="talk__lead">Sounds like your night?</p>
+        <a class="talk__btn" href="https://cal.com/prasan-singh/sirfyou" data-cal-open aria-haspopup="dialog" aria-controls="cal" aria-expanded="false">
+          <span class="talk__label">Book a call</span>
+          <span class="talk__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-      <p class="dv-note">sirf. is an independent media and content house. Not affiliated with or endorsed by Devcon or the Ethereum Foundation.</p>
+      <div class="careers-apply__btns">
+        <a class="btn btn--lg dv-ghost" href="https://t.me/prasansinghh" target="_blank" rel="noopener"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.4 3.6 2.9 10.8c-1.3.5-1.2 1.3-.2 1.6l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.6ZM8.6 13.6l9.6-6.1c.4-.3.9-.1.5.3l-7.9 7.2-.3 3.3-1.9-4.7Z"/></svg>Reach out on Telegram</a>
+      </div>
+      <p class="dv-note">Or email <a href="mailto:sirfconvos@gmail.com?subject=Devcon%20side%20event">sirfconvos@gmail.com</a>. sirf. is an independent media and content house. Not affiliated with or endorsed by Devcon or the Ethereum Foundation.</p>
     </section>
   </main>
+
+  <!-- ============ BOOKING POP-UP (cal.com on glass, on the page) ============ -->
+  <div class="cal-backdrop" data-cal-backdrop aria-hidden="true"></div>
+  <div class="cal" id="cal" role="dialog" aria-label="Book a call with sirf." aria-hidden="true" data-cal data-lenis-prevent>
+    <button class="cal__close" type="button" aria-label="Close" data-cal-close><span></span><span></span></button>
+    <div class="cal__body" data-cal-body data-cal-stage>
+      <p class="cal__loading"><span class="dot"></span>Loading calendar</p>
+      <div class="cal__retry">
+        <p>The calendar couldn't load here.</p>
+        <a class="cal__retry-btn" href="https://t.me/prasansinghh" target="_blank" rel="noopener" data-cal-alt>Message us on Telegram</a>
+      </div>
+      <div class="cal__embed" id="sirf-cal-inline"></div>
+    </div>
+  </div>
 
   <!-- ============ TICKER ============ -->
   <div class="ticker">

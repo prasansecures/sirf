@@ -843,6 +843,20 @@ html:has(body.page-dark) { background: var(--black); }
   font-family: var(--sans); font-style: normal; font-weight: 600; font-size: .68rem; letter-spacing: .12em; line-height: 1.4; color: var(--red);
 }
 .perk-group__title .perk__tag { display: table; margin: 12px 0 0; }
+.dv-book { justify-items: center; text-align: center; }
+.dv-book .perks-cta__lede { margin: 0 auto; }
+.dv-book .talk { margin: clamp(20px, 3vw, 40px) auto 0; }
+.dv-book .careers-apply__btns { justify-content: center; }
+.dv-book .dv-note { margin-left: auto; margin-right: auto; }
+.dv-note a { color: var(--paper); border-bottom: 1px solid var(--line); }
+.tg-icon { width: 1.1em; height: 1.1em; fill: currentColor; flex: none; }
+.page-dark .talk__btn { color: var(--paper); }
+.page-dark .talk::before { background: radial-gradient(closest-side, rgba(217, 64, 46, .34), rgba(217, 64, 46, .14) 45%, rgba(217, 64, 46, .04) 75%, transparent); }
+.page-dark .talk.is-hot::before { background: radial-gradient(closest-side, rgba(217, 64, 46, .5), rgba(217, 64, 46, .22) 45%, rgba(217, 64, 46, .06) 75%, transparent); }
+.page-dark .cal-backdrop { background: rgba(0, 0, 0, .35); }
+.page-dark .cal { color: var(--paper); background: radial-gradient(140% 90% at 0% 0%, rgba(255, 255, 255, .16), rgba(255, 255, 255, 0) 45%), radial-gradient(120% 80% at 100% 100%, rgba(217, 64, 46, .16), rgba(217, 64, 46, 0) 55%), rgba(28, 28, 28, .55); }
+.page-dark .cal__retry-btn { color: var(--paper); background: rgba(255, 255, 255, .1); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2); }
+@media (max-width: 480px) { .dv-book .careers-apply__btns { align-items: stretch; } }
 .dv-note { margin-top: 18px; max-width: 60ch; font-size: .85rem; color: var(--muted); }
 
 .perks {
