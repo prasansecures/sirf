@@ -838,6 +838,11 @@ html:has(body.page-dark) { background: var(--black); }
 .dv-film .role { border-bottom: 0; }
 .page-dark .btn.dv-ghost { background: transparent; color: var(--paper); box-shadow: inset 0 0 0 1.5px rgba(244, 242, 238, .35); }
 .page-dark .btn.dv-ghost:hover { box-shadow: inset 0 0 0 1.5px transparent; }
+.perk-group__title .perk__tag, .eyebrow .perk__tag {
+  display: inline-block; margin: 0 0 0 8px; vertical-align: middle;
+  font-family: var(--sans); font-style: normal; font-weight: 600; font-size: .68rem; letter-spacing: .12em; line-height: 1.4; color: var(--red);
+}
+.perk-group__title .perk__tag { display: table; margin: 12px 0 0; }
 .dv-note { margin-top: 18px; max-width: 60ch; font-size: .85rem; color: var(--muted); }
 
 .perks {
