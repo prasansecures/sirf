@@ -15,14 +15,15 @@ assets/img/           favicon, touch icon, OG image, logo mark
 
 ```sh
 npx serve .        # or: python3 -m http.server
+node tools/build.mjs && npx serve public   # the exact output Vercel deploys
 ```
 
 ## Deploy (Vercel)
 
-The site is plain static files, so Vercel serves it as-is: no build step, no framework. `vercel.json` adds clean URLs and security headers. Images are cached for 30 days; CSS and JS are revalidated on every visit, so each deploy shows up immediately.
+The site is plain static files plus one tiny build step, `node tools/build.mjs` (no dependencies). It copies the site into `public/` and adds a content hash to every CSS and JS link (`style.css?v=fa19f4cb74`). That lets `vercel.json` cache CSS, JS and fonts for a year: a changed file gets a new URL, so each deploy still shows up immediately, while unchanged files are never downloaded twice. Images are cached for 30 days. `vercel.json` sets the build command and output directory, and adds clean URLs and security headers.
 
 1. In Vercel: **Add New → Project → Import** the `prasansecures/sirf` GitHub repo.
-2. Framework preset: **Other**. Leave the build command and output directory empty. Deploy.
+2. Framework preset: **Other**. The build command and output directory come from `vercel.json`. Deploy.
 3. **Settings → Git → Production Branch**: set it to the branch that holds the site.
 4. **Settings → Domains**: add `sirf.website` (and `www.sirf.website`, redirecting to it). Vercel shows the DNS records to add at your domain registrar:
    - `sirf.website`: an **A** record pointing to the IP Vercel shows.
@@ -39,7 +40,7 @@ After that, every push to the production branch redeploys the site automatically
 - **Head:** title, a 152-character description (141 on `/faq`), canonical, robots directive, Open Graph and Twitter cards with image size and alt text.
 - **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ lives on its own page, `faq.html` (served at `/faq`), linked subtly from the contact section and the footer. Its `FAQPage` data mirrors the visible answers word for word, which Google requires: edit both together.
 - **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/`, `/faq`, `/perks`, `/devcon` and `/careers`. `llms.txt` is a plain-text summary for AI assistants.
-- **Performance:** fonts are self-hosted from `assets/fonts/` (same files and subsets Google Fonts serves), with the two above-the-fold fonts preloaded and cached for a year. Only the tiny Hindi/Urdu subsets still come from Google, loaded without blocking. The first-visit intro is kept short so the main content shows quickly. PNGs are palette-compressed.
+- **Performance:** nothing loads from third parties before the page shows. Fonts (including the tiny Hindi/Urdu subsets) and the Lenis smooth-scroll library (`assets/js/vendor/`) are self-hosted; the two above-the-fold fonts are preloaded. CSS, JS and fonts are fingerprinted and cached for a year (see Deploy). Internal pages are prefetched on hover via the Speculation Rules API, so moving between pages is near-instant in Chromium browsers. The cal.com calendar only loads when you get near it. The first-visit intro is skipped on phones. PNGs are palette-compressed.
 - **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
 
 **After deploying:**

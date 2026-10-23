@@ -28,17 +28,12 @@
   <meta name="twitter:image" content="https://www.sirf.website/assets/img/og.jpg">
   <meta name="twitter:image:alt" content="sirf. wordmark with a red dot and the line One thing at a time.">
 
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="/assets/fonts/league-spartan-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <!-- Devanagari / Urdu fonts are subset to just the glyphs used in "What's in the name?" -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&text=%E0%A4%B8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%AB%E0%A4%BC&display=swap" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@700&text=%D8%B5%D8%B1%D9%81&display=swap" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
   <script>
     (function (d) {
@@ -47,8 +42,10 @@
       catch (e) { d.classList.add('seen'); }
     })(document.documentElement);
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="assets/js/main.js" defer></script>
+  <script src="/assets/js/vendor/lenis-1.1.13.min.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <!-- Prefetch internal pages on hover/touch so page-to-page navigation is near-instant -->
+  <script type="speculationrules">{"prefetch": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": "/assets/*"}}]}, "eagerness": "moderate"}]}</script>
 
   <!-- Vercel Web Analytics + Speed Insights (only on the live site / Vercel previews) -->
   <script>

@@ -33,8 +33,10 @@
   <link rel="stylesheet" href="/assets/css/style.css">
 
   <script>document.documentElement.classList.add('js', 'seen');</script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="/assets/js/vendor/lenis-1.1.13.min.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
+  <!-- Prefetch internal pages on hover/touch so page-to-page navigation is near-instant -->
+  <script type="speculationrules">{"prefetch": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": "/assets/*"}}]}, "eagerness": "moderate"}]}</script>
   <!-- Vercel Web Analytics + Speed Insights (only on the live site / Vercel previews) -->
   <script>
     (function (h) {
