@@ -7,7 +7,6 @@ sirf. offers personal branding, profile optimisation, content systems for social
 ## Pages
 
 - [Home](https://www.sirf.website/): what sirf. does, who it works with, the fit check, the method and how to start
-- [Services](https://www.sirf.website/services): deliverables for founder personal branding, social content, campaigns, brand identity and media production
 - [FAQ](https://www.sirf.website/faq): answers on services, personal branding, social media growth, time commitment, onboarding and how to start
 - [Client perks](https://www.sirf.website/perks): what comes with being one of five clients (the inner circle)
 - [Devcon side events](https://www.sirf.website/devcon): 2026 media and production offering for side events during Devcon week in Mumbai, 28 October to 6 November 2026
