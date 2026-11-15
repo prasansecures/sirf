@@ -7,9 +7,10 @@ sirf. offers personal branding, profile optimisation, content systems for social
 ## Pages
 
 - [Home](https://www.sirf.website/): what sirf. does, who it works with, the fit check, the method and how to start
+- [Services](https://www.sirf.website/services): deliverables for founder personal branding, social content, campaigns, brand identity and media production
 - [FAQ](https://www.sirf.website/faq): answers on services, personal branding, social media growth, time commitment, onboarding and how to start
 - [Client perks](https://www.sirf.website/perks): what comes with being one of five clients (the inner circle)
-- [Devcon side events](https://www.sirf.website/devcon): media and production for side events during Devcon week in Mumbai, 28 October to 6 November 2026
+- [Devcon side events](https://www.sirf.website/devcon): 2026 media and production offering for side events during Devcon week in Mumbai, 28 October to 6 November 2026
 - [Careers](https://www.sirf.website/careers): open roles for a content strategist, a communication designer and a video editor, in-house or contract
 
 ## Contact
@@ -62,7 +63,7 @@ sirf. handles branding and brand identity: visual language, tone of voice and ar
 
 ## Devcon side events
 
-For people hosting side events during Devcon week in Mumbai (28 October to 6 November 2026), sirf. handles media and production: a photo and video crew, multi-camera recording of talks with clean audio, edited photos, short clips, a recap film and captioned talk uploads delivered within the same week, and a personal brand film for the organiser. Add-ons: event identity and teasers, standout merch (not t-shirts and stickers) and volunteers. sirf. is independent and not affiliated with Devcon or the Ethereum Foundation. Details: [Devcon side events](https://www.sirf.website/devcon)
+For Devcon week in Mumbai (28 October to 6 November 2026), sirf.’s event media and production offering included: a photo and video crew, multi-camera recording of talks with clean audio, edited photos, short clips, a recap film and captioned talk uploads delivered within the same week, and a personal brand film for the organiser. Add-ons: event identity and teasers, standout merch (not t-shirts and stickers) and volunteers. sirf. is independent and not affiliated with Devcon or the Ethereum Foundation. Details: [Devcon side events](https://www.sirf.website/devcon)
 
 ## Client perks (the inner circle)
 
