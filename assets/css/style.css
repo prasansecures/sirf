@@ -295,28 +295,9 @@ body::after {
   .scroll-cue { display: none; }
 }
 
-/* ---------- Marquee ---------- */
-.marquee {
-  background: var(--red); color: var(--paper);
-  overflow: hidden; padding: clamp(16px, 2vw, 26px) 0;
-  transform: rotate(-1.2deg) scale(1.02);
-  position: relative; z-index: 2;
-}
-.marquee__track {
-  display: flex; align-items: center; gap: clamp(22px, 3vw, 44px);
-  width: max-content;
-  animation: marquee 32s linear infinite;
-  font-size: clamp(1.6rem, 1rem + 2.6vw, 3.4rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; white-space: nowrap;
-}
-.marquee__track span:nth-of-type(even) { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
-.marquee__track i { width: .32em; height: .32em; border-radius: 50%; background: var(--paper); flex: none; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(calc(-50% - clamp(22px, 3vw, 44px) / 2)); } }
-
 /* ---------- Manifesto ---------- */
 .manifesto {
   background: var(--black); color: var(--paper);
-  margin-top: -2vw;
   padding: clamp(120px, 16vw, 240px) var(--gutter) clamp(100px, 14vw, 220px);
 }
 .manifesto > * { max-width: 1280px; margin-inline: auto; }
@@ -1225,7 +1206,7 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .marquee__track, .ticker__track { animation: none; }
+  .ticker__track { animation: none; }
   .loader { display: none !important; }
   :root, .js:not(.seen) { --intro: 0s; }
   .js [data-reveal] { opacity: 1; transform: none; }

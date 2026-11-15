@@ -367,7 +367,7 @@
       if (!cursor.classList.contains('is-on')) { cx = x; cy = y; } // reappear under the pointer, no glide
       cursor.classList.add('is-on');
       cursor.classList.toggle('is-hover', !!t.closest('a, button, label, input, textarea, .focus-item'));
-      cursor.classList.toggle('is-dark', !!t.closest('.page-dark, .manifesto, .fit, .footer, .marquee, .menu'));
+      cursor.classList.toggle('is-dark', !!t.closest('.page-dark, .manifesto, .fit, .footer, .menu'));
       if (!raf) raf = requestAnimationFrame(loop);
     }, { passive: true });
     document.addEventListener('pointerover', e => { if (overFrame(e.target)) hide(); });
