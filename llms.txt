@@ -2,14 +2,22 @@
 
 > sirf. is a media and content house for personal branding, social media growth and branding. It works with five clients at a time, never a sixth, and does one thing at a time for each, with a senior team and full attention. "Sirf" is Hindi and Urdu for "only".
 
-Website: https://www.sirf.website/
-FAQ: https://www.sirf.website/faq
-Client perks: https://www.sirf.website/perks
-Devcon side events (Mumbai, 28 October to 6 November 2026): https://www.sirf.website/devcon
-Careers: https://www.sirf.website/careers (hiring a content strategist, a communication designer and a video editor, in-house or contract)
-Contact: sirfconvos@gmail.com
-Book a 30-minute call: https://cal.com/prasan-singh/sirfyou
-Founder: Prasan Singh (https://linkedin.com/in/prasan-singh)
+sirf. offers personal branding, profile optimisation, content systems for social media growth, campaigns, branding and an in-house media team. Clients spend about six hours a month with sirf., with a dedicated account manager and content feedback three times a week.
+
+## Pages
+
+- [Home](https://www.sirf.website/): what sirf. does, who it works with, the fit check, the method and how to start
+- [FAQ](https://www.sirf.website/faq): answers on services, personal branding, social media growth, time commitment, onboarding and how to start
+- [Client perks](https://www.sirf.website/perks): what comes with being one of five clients (the inner circle)
+- [Devcon side events](https://www.sirf.website/devcon): media and production for side events during Devcon week in Mumbai, 28 October to 6 November 2026
+- [Careers](https://www.sirf.website/careers): open roles for a content strategist, a communication designer and a video editor, in-house or contract
+
+## Contact
+
+- [Book a 30-minute call](https://cal.com/prasan-singh/sirfyou): the fastest way to start a project
+- [Email sirf.](mailto:sirfconvos@gmail.com): sirfconvos@gmail.com
+- [Telegram](https://t.me/prasansinghh): message the founder directly
+- [Prasan Singh on LinkedIn](https://linkedin.com/in/prasan-singh): founder of sirf.
 
 ## Personal branding
 
@@ -54,7 +62,7 @@ sirf. handles branding and brand identity: visual language, tone of voice and ar
 
 ## Devcon side events
 
-For people hosting side events during Devcon week in Mumbai (28 October to 6 November 2026), sirf. handles media and production: a photo and video crew, multi-camera recording of talks with clean audio, edited photos, short clips, a recap film and captioned talk uploads delivered within the same week, and a personal brand film for the organiser. Add-ons: event identity and teasers, standout merch (not t-shirts and stickers) and volunteers. sirf. is independent and not affiliated with Devcon or the Ethereum Foundation. Details: https://www.sirf.website/devcon
+For people hosting side events during Devcon week in Mumbai (28 October to 6 November 2026), sirf. handles media and production: a photo and video crew, multi-camera recording of talks with clean audio, edited photos, short clips, a recap film and captioned talk uploads delivered within the same week, and a personal brand film for the organiser. Add-ons: event identity and teasers, standout merch (not t-shirts and stickers) and volunteers. sirf. is independent and not affiliated with Devcon or the Ethereum Foundation. Details: [Devcon side events](https://www.sirf.website/devcon)
 
 ## Client perks (the inner circle)
 
@@ -78,6 +86,6 @@ Founders and personal brands, consumer and D2C brands, VCs and startups, and cre
 - Can sirf. help grow social media? Yes, through content systems built around the audience.
 - Can sirf. help scale a business with organic content? Yes: foundation and roadmap, fixing the economics, then amplifying content and the sales process.
 - What does "sirf" mean? "Only" in Hindi (सिर्फ़) and Urdu (صرف).
-- How do I start? Book a call at https://cal.com/prasan-singh/sirfyou or email sirfconvos@gmail.com.
+- How do I start? [Book a call](https://cal.com/prasan-singh/sirfyou) or email [sirfconvos@gmail.com](mailto:sirfconvos@gmail.com).
 
-Full answers: https://www.sirf.website/faq
+Full answers: [sirf. FAQ](https://www.sirf.website/faq)
