@@ -7,6 +7,28 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "bbw.sirf.website"
+        }
+      ],
+      "destination": "https://www.sirf.website/bbw",
+      "permanent": false
+    },
+    {
+      "source": "/:path(.+)",
+      "has": [
+        {
+          "type": "host",
+          "value": "bbw.sirf.website"
+        }
+      ],
+      "destination": "https://www.sirf.website/:path",
+      "permanent": false
+    },
+    {
       "source": "/:path(.*)",
       "has": [
         {
