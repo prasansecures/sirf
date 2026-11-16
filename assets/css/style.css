@@ -832,6 +832,10 @@ html:has(body.page-dark) { background: var(--black); }
 .dv-book .talk { margin: clamp(20px, 3vw, 40px) auto 0; }
 .dv-book .careers-apply__btns { justify-content: center; }
 .dv-book .bbw-eyebrow { gap: .7em; }
+.bbw-link { display: inline-flex; align-items: center; gap: .35em; }
+.bbw-mark { display: block; width: .95em; height: .95em; flex: none; }
+.menu .bbw-link { align-items: center; gap: .25em; }
+.menu .bbw-mark { width: .7em; height: .7em; }
 .bbw-logo { display: inline-block; height: 1.25em; width: auto; vertical-align: middle; }
 .dv-prev { font-weight: 600; color: var(--paper); }
 .dv-prev a { color: var(--red); border-bottom: 1px solid currentColor; }
