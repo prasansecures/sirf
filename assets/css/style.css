@@ -831,7 +831,11 @@ html:has(body.page-dark) { background: var(--black); }
 .dv-book .perks-cta__lede { margin: 0 auto; }
 .dv-book .talk { margin: clamp(20px, 3vw, 40px) auto 0; }
 .dv-book .careers-apply__btns { justify-content: center; }
-.dv-book .dv-note { margin-left: auto; margin-right: auto; }
+.dv-book .bbw-eyebrow { gap: .7em; }
+.bbw-logo { display: inline-block; height: 1.25em; width: auto; vertical-align: middle; }
+.dv-prev { font-weight: 600; color: var(--paper); }
+.dv-prev a { color: var(--red); border-bottom: 1px solid currentColor; }
+.dv-note { margin-left: auto; margin-right: auto; }
 .dv-note a { color: var(--paper); border-bottom: 1px solid var(--line); }
 .tg-icon { width: 1.1em; height: 1.1em; fill: currentColor; flex: none; }
 .page-dark .talk__btn { color: var(--paper); }
@@ -1027,7 +1031,7 @@ html:not(.js) [data-pane][hidden] { display: grid !important; }
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px;
   font-size: .92rem; color: var(--muted-light);
 }
-.footer__bar ul { display: flex; gap: 24px; }
+.footer__bar ul { display: flex; flex-wrap: wrap; gap: 10px 24px; }
 .footer__bar a:hover { color: var(--paper); }
 
 /* ---------- Who ---------- */

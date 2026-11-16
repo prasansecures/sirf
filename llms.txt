@@ -1,15 +1,30 @@
 # sirf.
 
-> sirf. is a media and content house for personal branding, social media growth and branding. It works with five clients at a time, never a sixth, and does one thing at a time for each, with a senior team and full attention. "Sirf" is Hindi and Urdu for "only".
+> sirf. is a media and content house for branding, personal branding and high-end content production: photography, video and brand films, social content systems, campaigns and event consultancy. It works with five clients at a time, never a sixth, so every client gets a senior team and full attention. "Sirf" is Hindi and Urdu for "only".
 
-sirf. offers personal branding, profile optimisation, content systems for social media growth, campaigns, branding and an in-house media team. Clients spend about six hours a month with sirf., with a dedicated account manager and content feedback three times a week.
+sirf. works with founders, leaders and brands who care about quality: it builds the brand (identity, positioning, voice), produces the content (shoots, stills, edits, films) in-house, and runs the system that gets it seen. Clients spend about six hours a month with sirf., with a dedicated account manager and content feedback three times a week. For events, sirf. offers event consultancy and full event media and production, including a personal brand film for the organiser.
+
+## Services
+
+- [Branding and brand identity](https://www.sirf.website/#identity-art-direction): visual language, tone of voice and art direction that ties films, posts and pages together
+- [Personal branding for founders and leaders](https://www.sirf.website/#personal-branding): positioning, voice, founder-led posts, recurring series and short-form video
+- [High-end photography and video production](https://www.sirf.website/#media): an in-house team for shoots, stills, edits and brand films; event photography, multi-camera talk recording, clips and recap films
+- [Social media content systems](https://www.sirf.website/#content-systems): repeatable formats, editorial series and a publishing rhythm for LinkedIn, Instagram and YouTube
+- [Profile optimisation](https://www.sirf.website/#profile-optimisation): LinkedIn, Instagram and YouTube profiles rebuilt so visits turn into follows and leads
+- [Campaigns and launches](https://www.sirf.website/#campaigns-launches): the campaign idea, the rollout and the creative, across digital and out-of-home
+- [Event consultancy](https://www.sirf.website/#event-consultancy): concept, venue, run of show, guest list, partners and the media plan
+- [Scaling and distribution](https://www.sirf.website/#scaling-distribution): offer, pricing, ideal customer, sales process and where organic and paid content should go
+
+## Events
+
+- [Binance Blockchain Week side events, Bangkok](https://www.sirf.website/bbw): event consultancy, photo and video crew, multi-camera talk recording, clips, a recap film and an organiser brand film for side events around Binance Blockchain Week (28 to 29 November 2026). sirf. is independent and not affiliated with Binance.
+- [Devcon 2026 side events, Mumbai (previous work)](https://www.sirf.website/devcon): the same media and production offering for side events during Devcon week in Mumbai (28 October to 6 November 2026). sirf. is not affiliated with Devcon or the Ethereum Foundation.
 
 ## Pages
 
 - [Home](https://www.sirf.website/): what sirf. does, who it works with, the fit check, the method and how to start
-- [FAQ](https://www.sirf.website/faq): answers on services, personal branding, social media growth, time commitment, onboarding and how to start
+- [FAQ](https://www.sirf.website/faq): answers on services, branding, high-end production, event consultancy, time commitment, onboarding and how to start
 - [Client perks](https://www.sirf.website/perks): what comes with being one of five clients (the inner circle)
-- [Devcon side events](https://www.sirf.website/devcon): 2026 media and production offering for side events during Devcon week in Mumbai, 28 October to 6 November 2026
 - [Careers](https://www.sirf.website/careers): open roles for a content strategist, a communication designer and a video editor, in-house or contract
 
 ## Contact
@@ -18,32 +33,6 @@ sirf. offers personal branding, profile optimisation, content systems for social
 - [Email sirf.](mailto:sirfconvos@gmail.com): sirfconvos@gmail.com
 - [Telegram](https://t.me/prasansinghh): message the founder directly
 - [Prasan Singh on LinkedIn](https://linkedin.com/in/prasan-singh): founder of sirf.
-
-## Personal branding
-
-sirf. builds personal brands for founders, CEOs and leaders: positioning, voice, and the content system that carries it across LinkedIn, Instagram, YouTube and short-form video. The founder's time commitment is about six hours a month, with regular account-manager check-ins, content feedback three times a week, one point of contact and no repeated briefs.
-
-## Profile optimisation
-
-sirf. rebuilds LinkedIn, Instagram and YouTube profiles to convert: bio, banner, featured posts and highlights that turn a visit into a follow, and a follow into a lead.
-
-## Social media growth
-
-sirf. runs content systems for social media growth: formats, series and a consistent publishing rhythm designed around the audience rather than trends, produced by an in-house media team (shoots, stills, edits).
-
-## Branding
-
-sirf. handles branding and brand identity: visual language, tone of voice and art direction, applied consistently across films, posts and pages.
-
-## Everything sirf. does
-
-- Personal branding for founders and leaders: positioning, voice, founder content, thought leadership
-- Profile optimisation: LinkedIn, Instagram and YouTube profiles (bio, banner, featured posts, highlights) rebuilt to convert visits into followers and leads
-- Content systems and social media growth (LinkedIn, Instagram, YouTube, short-form)
-- Campaigns and launches
-- Branding: identity and art direction
-- Media: an in-house team for shoots, stills, edits and films
-- Scaling and distribution: offer and pricing, ideal customer, sales process, channels and paid media
 
 ## How onboarding and the work go
 
@@ -60,14 +49,6 @@ sirf. handles branding and brand identity: visual language, tone of voice and ar
 - Senior people on every deliverable.
 - About six hours of the client's time per month, with regular check-ins with the account manager and content feedback three times a week.
 
-## Devcon side events
-
-For Devcon week in Mumbai (28 October to 6 November 2026), sirf.’s event media and production offering included: a photo and video crew, multi-camera recording of talks with clean audio, edited photos, short clips, a recap film and captioned talk uploads delivered within the same week, and a personal brand film for the organiser. Add-ons: event identity and teasers, standout merch (not t-shirts and stickers) and volunteers. sirf. is independent and not affiliated with Devcon or the Ethereum Foundation. Details: [Devcon side events](https://www.sirf.website/devcon)
-
-## Client perks (the inner circle)
-
-Every sirf. client gets every perk, with no tiers: full attention (five clients at a time), a dedicated relationship manager, a monthly coffee catch-up with the team, a private invite-only circle of the founders sirf. works with, access to sirf.'s shortlist of high-end creative vendors (photographers, stylists, set designers, studios, fabricators), invite-only events around the country (coming soon), and small-batch sirf. merch.
-
 ## Who it is for
 
 Founders and personal brands, consumer and D2C brands, VCs and startups, and creators and media businesses who care about quality and want a partner rather than a vendor.
@@ -79,13 +60,10 @@ Founders and personal brands, consumer and D2C brands, VCs and startups, and cre
 3. Craft: the frame, the grade, the sound mix, the caption; the last 10% is where excellence lives.
 4. Deliver: finished, on time, nothing half-done. Then the next thing.
 
-## FAQ
+## Client perks (the inner circle)
 
-- What is sirf.? A media and content house for personal branding, social media growth and branding, working with five clients at a time.
-- Does sirf. do personal branding for founders? Yes; it is one of its main services.
-- Can sirf. help grow social media? Yes, through content systems built around the audience.
-- Can sirf. help scale a business with organic content? Yes: foundation and roadmap, fixing the economics, then amplifying content and the sales process.
-- What does "sirf" mean? "Only" in Hindi (सिर्फ़) and Urdu (صرف).
-- How do I start? [Book a call](https://cal.com/prasan-singh/sirfyou) or email [sirfconvos@gmail.com](mailto:sirfconvos@gmail.com).
+Every sirf. client gets every perk, with no tiers: full attention (five clients at a time), a dedicated relationship manager, a monthly coffee catch-up with the team, a private invite-only circle of the founders sirf. works with, access to sirf.'s shortlist of high-end creative vendors (photographers, stylists, set designers, studios, fabricators), invite-only events around the country (coming soon), and small-batch sirf. merch.
 
-Full answers: [sirf. FAQ](https://www.sirf.website/faq)
+## Optional
+
+- [Full text for AI assistants](https://www.sirf.website/llms-full.txt): every service, event offering and FAQ answer in one file

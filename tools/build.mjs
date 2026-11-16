@@ -44,4 +44,22 @@ for (const page of pages) {
   }
 }
 if (!existsSync(join(out, 'index.html'))) throw new Error('index.html missing from build');
+
+// llms-full.txt: llms.txt plus every service and every FAQ answer, taken from
+// the pages' own JSON-LD so it can never drift from what the site says.
+const SITE = 'https://www.sirf.website';
+const ld = page => [...readFileSync(join(root, page), 'utf8').matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+  .flatMap(m => JSON.parse(m[1])['@graph'] || []);
+const full = [readFileSync(join(root, 'llms.txt'), 'utf8').trim(), ''];
+const org = ld('index.html').find(n => n['@type'] === 'Organization');
+full.push('## All services, in detail', '');
+for (const { itemOffered: s } of org.hasOfferCatalog.itemListElement) full.push(`### ${s.name}`, '', s.description, '', `More: ${s.url}`, '');
+const FAQS = [['faq.html', 'FAQ', '/faq'], ['bbw.html', 'Binance Blockchain Week side events (Bangkok)', '/bbw'], ['devcon.html', 'Devcon 2026 side events (Mumbai, previous work)', '/devcon']];
+for (const [page, title, path] of FAQS) {
+  const faq = ld(page).find(n => n['@type'] === 'FAQPage');
+  if (!faq) continue;
+  full.push(`## ${title}: questions and answers`, '', `Source: ${SITE}${path}`, '');
+  for (const q of faq.mainEntity) full.push(`### ${q.name}`, '', q.acceptedAnswer.text, '');
+}
+writeFileSync(join(out, 'llms-full.txt'), full.join('\n').trim() + '\n');
 console.log('Built public/ with', pages.length, 'pages:', versions);

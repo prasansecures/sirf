@@ -16,6 +16,16 @@
       ],
       "destination": "https://www.sirf.website/:path",
       "permanent": true
+    },
+    {
+      "source": "/llm.txt",
+      "destination": "/llms.txt",
+      "permanent": true
+    },
+    {
+      "source": "/llm-full.txt",
+      "destination": "/llms-full.txt",
+      "permanent": true
     }
   ],
   "headers": [
