@@ -48,6 +48,11 @@
       "source": "/llm-full.txt",
       "destination": "/llms-full.txt",
       "permanent": true
+    },
+    {
+      "source": "/work",
+      "destination": "/bbw#work",
+      "permanent": false
     }
   ],
   "headers": [

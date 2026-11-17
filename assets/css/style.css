@@ -819,6 +819,10 @@ html:has(body.page-dark) { background: var(--black); }
 .work { max-width: var(--max); margin: 0 auto; padding: clamp(40px, 6vw, 90px) var(--gutter) clamp(30px, 4vw, 60px); }
 .work-grid { columns: 2 440px; column-gap: clamp(24px, 4vw, 64px); border-top: 1.5px solid rgba(244, 242, 238, .55); padding-top: clamp(24px, 3vw, 40px); }
 .work-grid--one { columns: 1; max-width: 620px; }
+.work-sub { gap: 12px; margin-bottom: clamp(18px, 2vw, 28px); }
+.work-sub__title { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.6rem); font-weight: 800; letter-spacing: -.045em; line-height: 1; }
+.work-sub__title em { color: var(--red); }
+.work--more { padding-top: clamp(16px, 2vw, 32px); }
 .work-card { break-inside: avoid; display: grid; gap: 8px; margin-bottom: clamp(36px, 4vw, 56px); scroll-margin-top: calc(var(--nav-h) + 24px); }
 .work-card__meta { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .work-card__meta span { color: var(--red); }
