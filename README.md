@@ -41,7 +41,7 @@ After that, every push to the production branch redeploys the site automatically
 - **One canonical address:** `https://www.sirf.website/`. The bare domain redirects there. If you make the bare domain primary in Vercel instead, update the canonical, `og:url`, structured data, `robots.txt`, `sitemap.xml` and `llms.txt` to match.
 - **Head:** title, a 152-character description (141 on `/faq`), canonical, robots directive, Open Graph and Twitter cards with image size and alt text.
 - **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ lives on its own page, `faq.html` (served at `/faq`), linked subtly from the contact section and the footer. Its `FAQPage` data mirrors the visible answers word for word, which Google requires: edit both together.
-- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/`, `/faq`, `/perks`, `/bbw`, `/devcon` and `/careers`. `llms.txt` is the summary for AI assistants (services, events, pages, contact, as Markdown link lists); `llms-full.txt` is generated at build time by `tools/build.mjs` from `llms.txt` plus every service and FAQ answer in the pages' JSON-LD, so it always matches the site. `/llm.txt` redirects to `/llms.txt`.
+- **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/`, `/work`, `/faq`, `/perks`, `/bbw`, `/devcon` and `/careers`. `llms.txt` is the summary for AI assistants (services, events, pages, contact, as Markdown link lists); `llms-full.txt` is generated at build time by `tools/build.mjs` from `llms.txt` plus every service and FAQ answer in the pages' JSON-LD, so it always matches the site. `/llm.txt` redirects to `/llms.txt`.
 - **Performance:** nothing loads from third parties before the page shows. Fonts (including the tiny Hindi/Urdu subsets) and the Lenis smooth-scroll library (`assets/js/vendor/`) are self-hosted; the two above-the-fold fonts are preloaded. CSS, JS and fonts are fingerprinted and cached for a year (see Deploy). Internal pages are prefetched on hover via the Speculation Rules API, so moving between pages is near-instant in Chromium browsers. The cal.com calendar only loads when you get near it. The first-visit intro is skipped on phones. PNGs are palette-compressed.
 - **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
 
@@ -87,6 +87,8 @@ Track progress in Search Console under **Links**. Five to ten relevant referring
 | Paper | `#F4F2EE` |
 
 Type: League Spartan (headlines and body), with Instrument Serif italic for accent words.
+
+**Work page (`/work`):** proof of work shown with X's official embeds, so videos play on the page. Each card is a `blockquote.twitter-tweet` with the post's text and link (readable even if X's script is blocked); `assets/js/main.js` loads `platform.twitter.com/widgets.js` only when the visitor scrolls near the posts. To add a post, copy a card in `work.html`, change the id, handle, title, date and text, and add it to the `ItemList` in the page's JSON-LD and to `llms.txt`.
 
 ## Page structure
 

@@ -346,6 +346,20 @@
     $$('[data-pane]').forEach(p => { p.hidden = p.dataset.pane !== tab.dataset.paneTab; });
   }));
 
+  /* ---------- Work: X's official embeds (videos play on the page), loaded only when near ---------- */
+  const xEmbeds = $('[data-x-embeds]');
+  if (xEmbeds) {
+    const xio = new IntersectionObserver(es => {
+      if (!es.some(e => e.isIntersecting)) return;
+      xio.disconnect();
+      const sc = document.createElement('script');
+      sc.src = 'https://platform.twitter.com/widgets.js';
+      sc.async = true;
+      document.head.appendChild(sc);
+    }, { rootMargin: '600px 0px' });
+    xio.observe(xEmbeds);
+  }
+
   /* ---------- Cursor: the brand dot follows you ---------- */
   const cursor = $('.cursor');
   if (cursor && getComputedStyle(cursor).display !== 'none') {

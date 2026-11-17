@@ -815,6 +815,23 @@ html:has(body.page-dark) { background: var(--black); }
 .page-dark .faq__item[open] summary { color: var(--paper); }
 .page-dark .step + .step::before { background: linear-gradient(180deg, transparent, rgba(244, 242, 238, .16) 25%, rgba(244, 242, 238, .16) 75%, transparent); }
 
+/* ---------- Work (proof of work, X embeds) ---------- */
+.work { max-width: var(--max); margin: 0 auto; padding: clamp(40px, 6vw, 90px) var(--gutter) clamp(30px, 4vw, 60px); }
+.work-grid { columns: 2 440px; column-gap: clamp(24px, 4vw, 64px); border-top: 1.5px solid rgba(244, 242, 238, .55); padding-top: clamp(24px, 3vw, 40px); }
+.work-grid--one { columns: 1; max-width: 620px; }
+.work-card { break-inside: avoid; display: grid; gap: 8px; margin-bottom: clamp(36px, 4vw, 56px); scroll-margin-top: calc(var(--nav-h) + 24px); }
+.work-card__meta { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.work-card__meta span { color: var(--red); }
+.work-card__title { font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.1; }
+/* before X's script runs (or if it is blocked): a readable card with a link */
+.work-card blockquote.twitter-tweet {
+  margin: 8px 0 0; padding: 20px 22px; border-radius: 18px; max-width: 550px;
+  background: var(--glass-fill); box-shadow: var(--glass-rim);
+  color: var(--muted); font-size: 1rem; line-height: 1.5;
+}
+.work-card blockquote.twitter-tweet a { display: inline-block; margin-top: 12px; color: var(--paper); font-weight: 600; border-bottom: 1px solid var(--line); }
+.work-card .twitter-tweet-rendered { margin: 8px 0 0 !important; max-width: 550px !important; }
+
 /* ---------- Devcon side events ---------- */
 .dv-hero .careers-apply__btns { margin-top: 6px; }
 .dv-film { padding-top: 0; }
