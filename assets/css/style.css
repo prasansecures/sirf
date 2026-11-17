@@ -838,9 +838,22 @@ html:has(body.page-dark) { background: var(--black); }
 
 /* ---------- Devcon side events ---------- */
 .dv-hero .careers-apply__btns { margin-top: 6px; }
-.dv-film { padding-top: 0; }
+/* The organiser film stands out: a full-width off-white panel on the dark page */
+.dv-film {
+  --red: #922115; --muted: #5e5b56; --line: rgba(28, 28, 28, .14);
+  --glass-fill: rgba(255, 255, 255, .46);
+  --glass-rim: inset 0 1px 1px rgba(255, 255, 255, .95), inset 0 -1px 1px rgba(255, 255, 255, .3), 0 1px 2px rgba(28, 28, 28, .06), 0 8px 24px -12px rgba(28, 28, 28, .22);
+  max-width: none; margin: clamp(20px, 3vw, 40px) 0 0;
+  padding: clamp(80px, 10vw, 150px) var(--gutter) clamp(60px, 8vw, 120px);
+  background: var(--paper); color: var(--ink);
+}
+.dv-film ::selection { background: var(--red); color: var(--paper); }
 .dv-film .role__title em { color: var(--red); font-size: 1.04em; }
-.dv-film .role { border-bottom: 0; }
+.page-dark .dv-film .role { max-width: calc(var(--max) - 2 * var(--gutter)); margin: 0 auto; border-top-color: var(--ink); border-bottom: 0; padding-bottom: 0; }
+.work-sub__title a { transition: color .3s; }
+.work-sub__title a:hover { color: var(--red); }
+.work-sub__handle { display: inline-block; vertical-align: middle; margin-left: .35em; font-size: max(.8rem, .3em); font-weight: 600; letter-spacing: .08em; color: var(--muted); transition: color .3s; }
+.work-sub__title a:hover .work-sub__handle { color: var(--red); }
 .page-dark .btn.dv-ghost { background: transparent; color: var(--paper); box-shadow: inset 0 0 0 1.5px rgba(244, 242, 238, .35); }
 .page-dark .btn.dv-ghost:hover { box-shadow: inset 0 0 0 1.5px transparent; }
 .perk-group__title .perk__tag, .eyebrow .perk__tag {
