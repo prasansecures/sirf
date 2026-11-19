@@ -834,6 +834,9 @@ html:has(body.page-dark) { background: var(--black); }
   color: var(--muted); font-size: 1rem; line-height: 1.5;
 }
 .work-card blockquote.twitter-tweet a { display: inline-block; margin-top: 12px; color: var(--paper); font-weight: 600; border-bottom: 1px solid var(--line); }
+.work-card__also { font-size: .9rem; color: var(--muted); }
+.work-card__also a { color: var(--paper); border-bottom: 1px solid var(--line); }
+.work-card__also a:hover { color: var(--red); }
 .work-card .twitter-tweet-rendered { margin: 8px 0 0 !important; max-width: 550px !important; }
 
 /* ---------- Devcon side events ---------- */
