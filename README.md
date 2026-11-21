@@ -42,7 +42,7 @@ After that, every push to the production branch redeploys the site automatically
 - **Head:** title, a 152-character description (141 on `/faq`), canonical, robots directive, Open Graph and Twitter cards with image size and alt text.
 - **Structured data (JSON-LD `@graph`):** `Organization` (founder, contact, services as an `OfferCatalog`), `WebSite`, `WebPage` and `FAQPage`. The FAQ lives on its own page, `faq.html` (served at `/faq`), linked subtly from the contact section and the footer. Its `FAQPage` data mirrors the visible answers word for word, which Google requires: edit both together.
 - **Crawlers:** `robots.txt` allows everyone and explicitly allows AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others). `sitemap.xml` lists `/`, `/faq`, `/perks`, `/bbw`, `/devcon` and `/careers`. `llms.txt` is the summary for AI assistants (services, events, pages, contact, as Markdown link lists); `llms-full.txt` is generated at build time by `tools/build.mjs` from `llms.txt` plus every service and FAQ answer in the pages' JSON-LD, so it always matches the site. `/llm.txt` redirects to `/llms.txt`.
-- **Performance:** nothing loads from third parties before the page shows. Fonts (including the tiny Hindi/Urdu subsets) and the Lenis smooth-scroll library (`assets/js/vendor/`) are self-hosted; the two above-the-fold fonts are preloaded. CSS, JS and fonts are fingerprinted and cached for a year (see Deploy). Internal pages are prefetched on hover via the Speculation Rules API, so moving between pages is near-instant in Chromium browsers. The cal.com calendar only loads when you get near it. The first-visit intro is skipped on phones. PNGs are palette-compressed.
+- **Performance:** nothing loads from third parties before the page shows. Fonts (including the tiny Hindi subset) and the Lenis smooth-scroll library (`assets/js/vendor/`) are self-hosted; the two above-the-fold fonts are preloaded. CSS, JS and fonts are fingerprinted and cached for a year (see Deploy). Internal pages are prefetched on hover via the Speculation Rules API, so moving between pages is near-instant in Chromium browsers. The cal.com calendar only loads when you get near it. The first-visit intro is skipped on phones. PNGs are palette-compressed.
 - **Also:** one `h1` (with a screen-reader/crawler line naming what sirf. is), `site.webmanifest`, and a `noindex` 404 page.
 
 **After deploying:**
@@ -93,11 +93,11 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 ## Page structure
 
 0. **Intro:** the sirf. wordmark and red dot, shown once per browser session. It's skipped when the visitor has reduce-motion turned on.
-1. **Hero:** dictionary definition of *sirf* (Hindi/Urdu for "only"), with "One thing / *at a time*" and the red dot dropping in.
+1. **Hero:** dictionary definition of *sirf* (Hindi for "only"), with "One thing / *at a time*" and the red dot dropping in.
 2. **Manifesto:** words light up as you scroll.
 3. **Who we work with:** "Five clients. *Never a sixth.*" plus four client types. Edit the types in `index.html` (`.who__grid`).
 4. **What we do:** eight services (Event Consultancy is the eighth). Only the one in the centre of the screen is in focus; the others blur.
-5. **What's in the name?:** सिर्फ़ / صرف, "Sirf means *only*."
+5. **What's in the name?:** सिर्फ़, "Sirf means *only*."
 6. **Fit check:** "You'll enjoy working with us if you're…", pinned while scrolling, showing one of six persona lines at a time. It's followed by "…and probably won't if you" with animated strike-throughs. Below that, "Sounds like you? Let's talk" sits on a soft red glow. Hovering over it opens a frosted-glass pop-up on the page with the cal.com booking calendar inside; clicking, tapping or picking a date keeps it open, and ×, Esc or a click outside closes it. On phones it slides up as a sheet. The calendar is loaded into the pop-up in the background once a visitor scrolls near this spot, so it opens ready. Nothing ever redirects or opens a new tab.
 7. **Method:** Listen, Commit, Craft, Deliver; the time promise ("sirf 6 hours of your month"); then "Numbers we'll put in writing" (5 clients max, 1 thing in focus per client, 0 handoffs, 100% senior eyes).
 8. **Contact:** "Tell us the one thing." with a **Book a call | Send a brief** switch: the cal.com calendar on light glass (default), or the brief form.
@@ -105,4 +105,4 @@ Type: League Spartan (headlines and body), with Instrument Serif italic for acce
 
 **Liquid glass details (iOS-style):** the nav lifts into a floating glass capsule once you scroll; the scroll cue, service tags, form chips, Fit check label/counter/slider and step numbers sit on glass; buttons press in slightly when tapped. The shared glass values are the `--glass-*` variables in `style.css`.
 
-Smooth scrolling uses [Lenis](https://github.com/darkroomengineering/lenis) from jsDelivr; if it fails to load, the page falls back to native scrolling. The Devanagari and Urdu fonts load without blocking the page and are subset to just the glyphs used. Motion respects `prefers-reduced-motion`. Without JavaScript, every section falls back to static content.
+Smooth scrolling uses [Lenis](https://github.com/darkroomengineering/lenis), self-hosted in `assets/js/vendor/`; if it fails to load, the page falls back to native scrolling. The Devanagari font loads without blocking the page and are subset to just the glyphs used. Motion respects `prefers-reduced-motion`. Without JavaScript, every section falls back to static content.
