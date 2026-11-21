@@ -32,7 +32,7 @@ The site is plain static files plus one tiny build step, `node tools/build.mjs` 
 
 After that, every push to the production branch redeploys the site automatically.
 
-**bbw.sirf.website:** a short link for the Binance Blockchain Week page. `vercel.json` redirects it to `https://www.sirf.website/bbw` (and any other path to the same path on www). To make it work: add `bbw.sirf.website` under the Vercel project's **Settings → Domains**, then add the **CNAME** record Vercel shows (name `bbw`) at the domain's DNS provider.
+**bbw.sirf.website:** a short link for the Binance Blockchain Week page; `bbw.sirf.website/deck` serves the BBW deck (`bbw-deck.html`, rebuilt from the Slides deck as a web page with a Present mode; `www.sirf.website/deck` redirects to it). `vercel.json` redirects it to `https://www.sirf.website/bbw` (and any other path to the same path on www). To make it work: add `bbw.sirf.website` under the Vercel project's **Settings → Domains**, then add the **CNAME** record Vercel shows (name `bbw`) at the domain's DNS provider.
 
 **Analytics:** Vercel Web Analytics and Speed Insights are wired in `index.html` and only load on `sirf.website` or `*.vercel.app`. Turn them on in the Vercel project (the **Analytics** and **Speed Insights** tabs) to start collecting.
 

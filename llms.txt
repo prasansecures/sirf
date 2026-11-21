@@ -30,6 +30,7 @@ sirf. works with founders, leaders and brands who care about quality: it builds 
 ## Events
 
 - [Binance Blockchain Week side events, Bangkok](https://www.sirf.website/bbw): event consultancy, photo and video crew, multi-camera talk recording, clips, a recap film and an organiser brand film for side events around Binance Blockchain Week (28 to 29 November 2026). sirf. is independent and not affiliated with Binance.
+- [BBW deck](https://bbw.sirf.website/deck): the sirf. × BBW Bangkok deck as a web page (services, organiser film, proof of work, contact)
 - [Devcon 2026 side events, Mumbai (previous work)](https://www.sirf.website/devcon): the same media and production offering for side events during Devcon week in Mumbai (28 October to 6 November 2026). sirf. is not affiliated with Devcon or the Ethereum Foundation.
 
 ## Pages

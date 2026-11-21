@@ -18,7 +18,7 @@
       "permanent": false
     },
     {
-      "source": "/:path(.+)",
+      "source": "/:path((?!deck$|assets/|_vercel/).+)",
       "has": [
         {
           "type": "host",
@@ -26,6 +26,17 @@
         }
       ],
       "destination": "https://www.sirf.website/:path",
+      "permanent": false
+    },
+    {
+      "source": "/:p(deck|bbw-deck|bbw/deck)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.sirf.website"
+        }
+      ],
+      "destination": "https://bbw.sirf.website/deck",
       "permanent": false
     },
     {
@@ -107,6 +118,18 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/deck",
+      "has": [
+        {
+          "type": "host",
+          "value": "bbw.sirf.website"
+        }
+      ],
+      "destination": "/bbw-deck"
     }
   ]
 }

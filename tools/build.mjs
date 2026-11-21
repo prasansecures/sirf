@@ -22,7 +22,7 @@ mkdirSync(out);
 for (const f of [...FILES, ...pages]) cpSync(join(root, f), join(out, f));
 for (const d of DIRS) cpSync(join(root, d), join(out, d), { recursive: true });
 
-const FINGERPRINT = ['/assets/css/style.css', '/assets/js/main.js', '/assets/js/vendor/lenis-1.1.13.min.js'];
+const FINGERPRINT = ['/assets/css/style.css', '/assets/js/main.js', '/assets/js/vendor/lenis-1.1.13.min.js', '/assets/css/deck.css', '/assets/js/deck.js'];
 const hash = p => createHash('sha256').update(readFileSync(join(root, p))).digest('hex').slice(0, 10);
 const versions = Object.fromEntries(FINGERPRINT.map(p => [p, hash(p)]));
 
